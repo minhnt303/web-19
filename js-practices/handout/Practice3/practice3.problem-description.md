@@ -9,7 +9,7 @@ function generate(testLengthArray){
 ```
 
 In this practice, you will create the generator that was used to create `practice1-test-data.json`. `numberOfTestcases` is the number of tests data that must be generated.
-
+--Mục đích tạo đề bài cho bài 1
 The input `testLengthArray` will be an array of integer. For each number in the array, you must generate a corresponding test data object. Expected output:
 
 ```javascript
