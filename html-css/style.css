@@ -1,0 +1,33 @@
+h1{
+    color: red;
+}
+
+p{text-align: center;
+width: 500px;}
+
+.heading2, #top, h6 , ul {
+    color: cyan;
+    font-size: 100px;
+}
+
+#top{
+    font-weight: 300;
+}
+
+ol li{
+    color: blue;
+}
+
+ol>li{
+    color: blue;
+}
+
+p:hover{
+    color: #ff00ff;
+    color: rgb(255, 0, 0);
+    color: rgba(255, 0, 0,0.3);
+}
+
+a:active{
+    color:  yellow;
+}
