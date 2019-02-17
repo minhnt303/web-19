@@ -1,13 +1,24 @@
-h1{
+/* h1{
     color: red;
+    background-color: green;
+    border: 10px;
+    padding: 50px;
+    border-image: url("./image/nintendo.jpg");
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: inline-block;
 }
-
+#google{
+    display: block;
+}
 p{text-align: center;
 width: 500px;}
 
 .heading2, #top, h6 , ul {
     color: cyan;
     font-size: 100px;
+    font-size: 1.2em;
+    font-size: 1.5rem;
 }
 
 #top{
@@ -30,4 +41,49 @@ p:hover{
 
 a:active{
     color:  yellow;
+} */
+.menu{
+    background-color: #D5B0AC;
+    font-weight: bold;
+    font-size:#402E2A;  
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right:100px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+span{
+    text-align: center;
+    padding-right:50px;
+    padding-left:50px;
+}
+
+.menu #item2:hover{
+    color: #FFFFFF;
+    background-color: #9CD08F;
+    padding-top:30px;
+    padding-bottom:30px;
+    padding-right:50px;
+    padding-left:50px;
+}
+
+.menu_vertical span{
+    display: block;
+    padding: 10px;
+    background-color:#D5B0AC;
+    margin-bottom: 1px;
+}
+.menu_vertical {
+    background-color:#FFFFFF;
+    margin-bottom: 0px;
+    padding: 0px;
+    width: 100px;
+}
+.menu_vertical #item2:hover{
+    color: #FFFFFF;
+    background-color: #9CD08F;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-right:0px;
+    padding-left:0px;
 }
