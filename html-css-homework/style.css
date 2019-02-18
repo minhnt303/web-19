@@ -162,3 +162,16 @@ body{
     font-family: 'PT Serif:700', serif;
     text-shadow: 2px 2px black;
 }
+
+.footer{
+    padding-left:40px;
+    padding-right:40px;
+    padding-bottom:50px;
+    background-color: white;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+}
+.travel, .host, .trustandsafety{
+    font-family: 'Mukta:200', sans-serif;
+}
