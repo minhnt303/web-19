@@ -43,7 +43,8 @@ body{
     height: 55px;
 }
 
-.neighborhood_guides h4{
+.neighborhood_guides p{
+    color: gray;
     font-family: 'Mukta:200', sans-serif;
     font-size: 15px;
     margin-top: 0px;
@@ -174,4 +175,8 @@ body{
 }
 .travel, .host, .trustandsafety{
     font-family: 'Mukta:200', sans-serif;
+}
+
+.travel p, .host p, .trustandsafety p{
+    color: gray;
 }
