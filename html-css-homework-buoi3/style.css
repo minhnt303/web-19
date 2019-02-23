@@ -1,0 +1,6 @@
+.main_layout{
+    position: fixed;
+    padding: 40px;
+    border: 1px;
+    border-right: solid 1px #ececec;
+}

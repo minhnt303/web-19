@@ -33,6 +33,12 @@ ol>li{
     color: blue;
 }
 
+p{
+    position: relative;
+    bottom: 50px;
+    transition: all  2s;
+}
+
 p:hover{
     color: #ff00ff;
     color: rgb(255, 0, 0);
@@ -41,49 +47,83 @@ p:hover{
 
 a:active{
     color:  yellow;
-} */
-.menu{
+}  */
+/* .menu{
     background-color: #D5B0AC;
     font-weight: bold;
     font-size:#402E2A;  
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-right:100px;
     text-align: center;
     margin-bottom: 50px;
+    position: relative;
 }
-span{
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right:100px;
+    background-color: #D5B0AC;
+    min-width: 160px;
+}
+.menu span{
     text-align: center;
     padding-right:50px;
     padding-left:50px;
 }
 
-.menu #item2:hover{
-    color: #FFFFFF;
-    background-color: #9CD08F;
-    padding-top:30px;
-    padding-bottom:30px;
-    padding-right:50px;
-    padding-left:50px;
-}
-
-.menu_vertical span{
-    display: block;
-    padding: 10px;
-    background-color:#D5B0AC;
-    margin-bottom: 1px;
-}
-.menu_vertical {
-    background-color:#FFFFFF;
-    margin-bottom: 0px;
-    padding: 0px;
-    width: 100px;
-}
-.menu_vertical #item2:hover{
+.menu :hover{
     color: #FFFFFF;
     background-color: #9CD08F;
     padding-top:10px;
     padding-bottom:10px;
-    padding-right:0px;
-    padding-left:0px;
+    padding-right:50px;
+    padding-left:50px;
+}
+
+.dropdown-content span{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+.menu:hover .dropdown-content {
+    display: block;
+  }
+
+ */
+ .menu{
+    background-color: #D5B0AC;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.menu span{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+}
+
+.menu span:hover{
+    color: #FFFFFF;
+    background-color: #9CD08F;
+    cursor: pointer;
+}
+
+.submenu{
+    display: none;
+    position: absolute;
+}
+
+.menu span:hover > .submenu{
+    display: block;
+}
+.submenu .submenu{
+    left:100%;
 }
