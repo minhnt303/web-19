@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-homework-buoi4",
+  "version": "1.0.0",
+  "description": "BTVN buổi 4: học về nodejs và npm để tạo server,...",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "minhnt303",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  }
+}
