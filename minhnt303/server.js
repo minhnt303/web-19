@@ -14,6 +14,16 @@ server.get('/create-question',(req, res) => {
     res.status(200).sendFile(path.resolve(__dirname + '/public/create-question.html'));
 });
 
+// server.post('/create-question',(req,res) => {
+//     console.log(req.body);
+//     res.status(201).end('Success');
+// });
+
+server.post('/create-question',(req,res) => {
+    req.on('data',)
+    res.status(201).end('Success');
+});
+
 // server.get('/create-question.css',(req, res) => {
 //     // res.send('Hello world!!')
 //     res.status(200).sendFile(path.resolve(__dirname + '/public/create-question.css'));

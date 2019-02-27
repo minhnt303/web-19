@@ -13,9 +13,10 @@
         Hỏi cộng đồng xem câu hỏi đúng/sai hoặc có không
     </h2>
 
-    <form>
-        <textarea class="input" rows ="6">
+    <form action='/create-question' method='post'>
+        <textarea class="input" rows ="6" name='content'>
         </textarea>
+        <div>200 charater left</div>
         <input type="submit" value ='Send'/>
     </form>
 </body>
