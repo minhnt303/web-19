@@ -14,10 +14,11 @@
     </h2>
 
     <form action='/create-question' method='post'>
-        <textarea class="input" rows ="6" name='content'>
+        <textarea id="content" class="input" rows ="6" name='content'>
         </textarea>
-        <div>200 charater left</div>
+        <div id='remain-character'>200 charater left</div>
         <input type="submit" value ='Send'/>
     </form>
+    <script src='./create-question.js'></script>
 </body>
 </html>
