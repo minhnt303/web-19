@@ -10,6 +10,7 @@
   "author": "minhnt303",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.4",
     "nodemon": "^1.18.10"
   }

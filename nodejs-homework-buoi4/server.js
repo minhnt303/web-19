@@ -1,12 +1,26 @@
 const express = require('express');
 const path = require('path');
 const server = express();
+const axios = require('axios');
+
+
 
 server.use(express.static('public'));
 
 server.get('/',(req, res) => {
     res.status(200).sendFile(path.resolve(__dirname + '/public/web-app.html'));
 });
+
+axios.post('/web10', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
 server.get('/web10', (req,res)=>{
     res.status(200).sendFile(path.resolve(__dirname + '/public/web/web10.html'));
