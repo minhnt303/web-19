@@ -20,7 +20,7 @@ server.use(bodyParser.json());
 
 server.get('/', (req, res) => {
     // res.send('Hello world!!')
-    res.status(200).send('Hello expressjs 12345')
+    res.status(200).sendFile(path.resolve(__dirname + '/public/answer-question.html'));
 });
 
 server.get('/create-question', (req, res) => {

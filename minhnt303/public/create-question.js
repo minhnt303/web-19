@@ -9,6 +9,6 @@ window.onload= ()=>{
         //findelement
         const remainCharacter = document.getElementById('remain-character');
         //change content
-        remainCharacter.innerText = `${200 - contentLength} characters left`;
+        remainCharacter.innerText = `${200 - contentLength}/200 characters left`;
     });
 };

@@ -6,11 +6,6 @@
 .input{
     width:100%;
 }
-
-textarea{
-    border-radius: 5px;
-}
-
 ul {
     list-style-type: none;
     margin: 0;
@@ -36,17 +31,7 @@ li a:hover{
     color:white;
     text-decoration: none;
 }
-
-/* .answer,.question{
-    margin:9px;
-} */
-
-#remain-character{
-    color:#777;
-    margin-bottom: 10px;
-}
-
-.question {
+.answer {
     color: #fff;
     background-color: #080808;
   }
@@ -54,4 +39,27 @@ li a:hover{
     text-decoration: none;
     font-size: 18px;
     line-height: 20px;
+}
+.col-md-6 {
+    width: 50%;
+    text-align: center;
+}
+.yes-no-button,.other-button{
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-top: 60px;
+}
+.other-button{
+    text-align: center;
+}
+.btn-lg{
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+.text-center{
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 10px;
 }
