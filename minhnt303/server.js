@@ -69,26 +69,42 @@ server.post('/answer-question', (req, res) => {
         console.log(data[store.get('id')].yes)
         fs.writeFile('./data.json', JSON.stringify(data), (err) => {
             if (err) { res.status(500).send('Internal server error!!!'); }
+            yesPercent = caculatorPer(data[store.get('id')].yes / (data[store.get('id')].yes + data[store.get('id')].no)) * 100 + "%";
+            noPercent = caculatorPer(data[store.get('id')].no / (data[store.get('id')].yes + data[store.get('id')].no)) * 100 + "%";
             htmlSource = htmlSource.replace("{vote}", data[store.get('id')].yes + data[store.get('id')].no);
+            htmlSource = htmlSource.replace("{yes}", yesPercent);
+            htmlSource = htmlSource.replace("{no}", noPercent);
             res.status(200).send(htmlSource);
         });
     }
+
     else if (req.body["btn-click"] == "no") {
         data[store.get('id')].no++;
         console.log(data[store.get('id')].no)
         fs.writeFile('./data.json', JSON.stringify(data), (err) => {
             if (err) { res.status(500).send('Internal server error!!!'); }
+            yesPercent = caculatorPer(data[store.get('id')].yes / (data[store.get('id')].yes + data[store.get('id')].no)) * 100 + "%";
+            noPercent = caculatorPer(data[store.get('id')].no / (data[store.get('id')].yes + data[store.get('id')].no)) * 100 + "%";
             htmlSource = htmlSource.replace("{vote}", data[store.get('id')].yes + data[store.get('id')].no);
+            htmlSource = htmlSource.replace("{yes}", yesPercent);
+            htmlSource = htmlSource.replace("{no}", noPercent);
             res.status(200).send(htmlSource);
         });
     }
 });
+function caculatorPer(x) {
+    return Number(x).toFixed(2);
+}
 server.get('/result', (req, res) => {
     // res.send('Hello world!!')
     let htmlSource = fs.readFileSync("./public/result.html", "utf8");
     let data = JSON.parse(fs.readFileSync("data.json"));
     htmlSource = htmlSource.replace("{question}", data[store.get('id')].content);
+    yesPercent = caculatorPer(data[store.get('id')].yes / (data[store.get('id')].yes + data[store.get('id')].no)) * 100 + "%";
+    noPercent = caculatorPer(data[store.get('id')].no / (data[store.get('id')].yes + data[store.get('id')].no)) * 100 + "%";
     htmlSource = htmlSource.replace("{vote}", data[store.get('id')].yes + data[store.get('id')].no);
+    htmlSource = htmlSource.replace("{yes}", yesPercent);
+    htmlSource = htmlSource.replace("{no}", noPercent);
     console.log(data[store.get('id')].id)
     console.log(data[store.get('id')].yes + data[store.get('id')].no)
     res.status(200).send(htmlSource);
