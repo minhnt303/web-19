@@ -17,16 +17,5 @@ $(document).ready(() => {
         },
     });
 
-    const buttonArray = document.getElementsByTagName("button");
-    for (let i = 0 ; i < buttonArray.length; i++) {
-        buttonArray[i].addEventListener("click", (event) => { 
-            $.ajax({ 
-                url :`/vote/?questionId=${questionId}&value=${buttonArray[i].value}`,
-                type :"post", 
-                success : (data) => {
-                    console.log('ok!');     
-                } 
-            });
-        });
-    }
+    
 })
