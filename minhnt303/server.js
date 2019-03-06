@@ -4,17 +4,15 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const localStorage = require('node-localstorage');
 var store = require('store')
+const mongoose = require('mongoose');
+const questionModel = require('./model');
+mongoose.connect('mongodb://localhost:27017/minhnt303',(err)=>{
+    if(err){
+        throw err;
+    }
+    console.log('connect to mongodb success')
+
 const server = express();
-const newQuestion = {
-    id: '',
-    content: '',
-    yes: 0,
-    no: 0,
-    createdTime: ''
-}
-// const o = [];
-const a = 0;
-// o.push(newQuestion);
 
 server.use(express.static('public'));
 server.use(bodyParser.urlencoded({ extended: false }));
@@ -110,8 +108,8 @@ server.use(bodyParser.json());
 //         `);
 //     });
 // });
-server.get("/", (req, res) => {
-    res.status(200).sendFile(path.resolve(__dirname + '/public/answer-question.html'));});
+server.get('/', (req, res) => {
+    res.status(200).sendFile(path.resolve(__dirname + '/public/index.html'));});
 // // function getRandomQues() {
 // //     const arraydata = JSON.parse(fs.readFileSync("data.json", "utf8"));
 // //     const index = Math.floor(Math.random() * (arraydata.length));
@@ -179,7 +177,8 @@ server.get('/create-question', (req, res) => {
 // //     res.status(201).end('Success');
 // // });
 
-server.post('/create-question', (req, res) => {
+server.post('/create-question', async(req, res) => {
+    console.log(req.body)
     //id, cotent, yes, no , createdtime
     // newQuestion.content = req.body;
     // var json = JSON.stringify(o);
@@ -189,29 +188,41 @@ server.post('/create-question', (req, res) => {
     //     });
     // console.log(req.body);
 
-    fs.readFile('./data.json', (err, data) => {
-        if (err) {
-            res.status(500).send('Internal server error!!!');
-        }
+    // fs.readFile('./data.json', (err, data) => {
+    //     if (err) {
+    //         res.status(500).send('Internal server error!!!');
+    //     }
 
-        const question = JSON.parse(data);
-        question.push({
-            id: question.length,
-            content: req.body.content,
-            yes: 0,
-            no: 0,
-            createdTime: new Date().toLocaleString(),
-        });
+    //     const question = JSON.parse(data);
+    //     question.push({
+    //         id: question.length,
+    //         content: req.body.content,
+    //         yes: 0,
+    //         no: 0,
+    //         createdTime: new Date().toLocaleString(),
+    //     });
 
-        fs.writeFile('./data.json', JSON.stringify(question), (err) => {
-            if (err) { res.status(500).send('Internal server error!!!'); }
-            res.status(201).end('Success');
-        });
+    //     fs.writeFile('./data.json', JSON.stringify(question), (err) => {
+    //         if (err) { res.status(500).send('Internal server error!!!'); }
+    //         res.status(201).json({
+    //             id:question.length -1,
+    //         });
+    //     });
 
-        console.log(JSON.parse(data));
-        // console.log(typeof data);
-        // console.log('write file success!!');
-    });
+    //     console.log(JSON.parse(data));
+    //     // console.log(typeof data);
+    //     // console.log('write file success!!');
+    // });
+
+    const newQuestion = {
+        content: req.body.content,
+    }
+
+    const result = await questionModel.create(newQuestion);
+    console.log(result);
+    res.status(201).json({
+        id: result._id,
+    })
 });
 
 server.get('/vote/:questionId/:vote', async (req, res)=>{
@@ -243,28 +254,6 @@ server.get('/vote/:questionId/:vote', async (req, res)=>{
         });
     });
 });
-server.post("/vote", (req, res) => {
-    const { questionId, value } = req.query;
-  
-    fs.readFile('./data.json', (err, data) => {
-      if (err) { 
-        res.status(500).send("error"); //luon luon check
-      }
-      const questions = JSON.parse(data);
-      if (value === 'yes') {
-        questions[questionId].yes += 1;
-      } else {
-        questions[questionId].no += 1;
-      }
-  
-      fs.writeFile('./data.json', JSON.stringify(questions), (err) => {
-        if (err) {
-          res.status(500).send("error"); //luon luon check
-        } 
-        res.status(200).send('update!');
-      }) 
-    })
-  }); 
 server.get('/result/:questionId',(req,res)=>{
     res.status(200).sendFile(path.resolve(__dirname + '/public/vote-result.html'));
 });
@@ -311,7 +300,21 @@ server.get('/question-random', (req, res) => {
     });
   });
 
+server.get('/random-question',(err,res)=>{
+    fs.readFile('./data.json', (err, data) => {
+                if (err) {
+                    res.status(500).send('Internal server error!!!');
+                }
+                const question = JSON.parse(data);
+                const randomIndex = Math.floor(Math.random() * (question.length));
+                randomQuestion = question[randomIndex];
+
+                res.status(200).json(randomQuestion); 
+            })
+});
+
 server.listen(3000, (err) => {
     if (err) throw err;
     console.log('Server is listen on post 3000..')
 });
+})
