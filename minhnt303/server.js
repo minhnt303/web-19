@@ -14,6 +14,7 @@ mongoose.connect('mongodb://localhost:27017/minhnt303',(err)=>{
 
 const server = express();
 
+
 server.use(express.static('public'));
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
