@@ -21,16 +21,23 @@
 
     <div class="spacer" data-height="100" style="height: 20px;"></div>
     <div class="container">
-            <h2 id='question-content'></h2>
-            <div>
-                <button id='vote-yes'>Yes</button>
-                <button id='vote-no'>No</button>
+        <h1 id='question-content' class='text-center'></h1>
+        <div class="yes-no-button">
+            <div class="col-md-6">
+                <button id='vote-no' class="btn btn-danger btn-lg" type="submit" value='no' name="btn-click"><span
+                        class="glyphicon glyphicon-thumbs-down"></span>
+                    Sai / Không / Trái</button></div>
+            <div class="col-md-6">
+                <button id='vote-yes' class="btn btn-primary btn-lg" type="submit" value='yes' name="btn-click"><span
+                        class="glyphicon glyphicon-thumbs-up"></span>
+                    Đúng / Có / Phải</button>
             </div>
-            
-            <div>
-                <button id='question-result'>Result</button>
-                <button id='other-question'>Other question</button>
-            </div>
+        </div>
+        <div class="spacer" data-height="100" style="height: 60px;"></div>
+        <div class="other-button">
+            <button id='question-result' class="answer2"name="btn_yesno" value="ketquavote">Kết quả vote</button>
+            <button id='other-question' class="answer2"name="btn_yesno" value="cauhoikhac">Câu hỏi khác</button>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src='/index.js'></script>

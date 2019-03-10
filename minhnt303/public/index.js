@@ -21,7 +21,7 @@ $(document).ready(() => {
 
                 document.getElementById('vote-no').addEventListener('click', () => {
                     $.ajax({
-                        url: `vote/${data.id}/no`,
+                        url: `vote/${data._id}/no`,
                         type: 'GET',
                         success: (data) => {
                             window.location.href = `/result/${data._id}`;

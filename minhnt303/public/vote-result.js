@@ -9,7 +9,7 @@ $(document).ready(() => {
             console.log(data._id)
             if (data._id) {
                 document.getElementById('question-content').innerText = data.content;
-                document.getElementById('total-vote').innerText = data.yes + data.no;
+                document.getElementById('total-vote').innerText = data.yes + data.no +" vote";
                 if (data.yes == 0 & data.no == 0) {
                     const yesPercent = 50;
                     const noPercent = 50;
