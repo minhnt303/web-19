@@ -229,31 +229,50 @@ server.post('/create-question', async(req, res) => {
 server.get('/vote/:questionId/:vote', async (req, res)=>{
     const {questionId, vote} = req.params;//tg dg: const questionId = req.params; const vote = req.params;
     console.log(questionId, vote);
-
-    fs.readFile('./data.json', (err, data) => {
-        if (err) {
-            res.status(500).send('Internal server error!!!');
-        }
-
-        const question = JSON.parse(data);
-        for (let item of question){
-            if(item.id == Number(questionId)){
-                vote === 'yes' ? item.yes += 1 : item.no +=1;
-                break;
-                // console.log('2')
-                // if(vote=='yes'){console.log('yes')}
-                // else if(vote =='no'){console.log('no')}
-            }
-        }
-
-        fs.writeFile('./data.json', JSON.stringify(question), (err)=>{
+    const questions = await questionModel.find();
+    for (let item of questions) {
+      if (String(item._id) === questionId) {
+        if (vote === 'yes') {
+          questionModel.updateOne({_id: questionId}, {$inc: {yes: 1}}, (err,data) => {
             if (err) {
-                res.status(500).send('Internal server error!!!');
+              throw err;
             }
-            console.log(questionId, question[questionId].yes, question[questionId].no);
-            res.status(200).send('Update question success!!');
-        });
-    });
+            console.log('vote success');
+          });
+        } else { 
+          questionModel.updateOne({_id: questionId}, {$inc: {no: 1}}, (err,data) => {
+            if (err) {
+              throw err;
+            }
+            console.log('vote success'); 
+          });
+        }
+      }
+    } 
+    // fs.readFile('./data.json', (err, data) => {
+    //     if (err) {
+    //         res.status(500).send('Internal server error!!!');
+    //     }
+
+    //     const question = JSON.parse(data);
+    //     for (let item of question){
+    //         if(item.id == Number(questionId)){
+    //             vote === 'yes' ? item.yes += 1 : item.no +=1;
+    //             break;
+    //             // console.log('2')
+    //             // if(vote=='yes'){console.log('yes')}
+    //             // else if(vote =='no'){console.log('no')}
+    //         }
+    //     }
+
+    //     fs.writeFile('./data.json', JSON.stringify(question), (err)=>{
+    //         if (err) {
+    //             res.status(500).send('Internal server error!!!');
+    //         }
+    //         console.log(questionId, question[questionId].yes, question[questionId].no);
+    //         res.status(200).send('Update question success!!');
+    //     });
+    // });
 });
 server.get('/result/:questionId',(req,res)=>{
     res.status(200).sendFile(path.resolve(__dirname + '/public/vote-result.html'));
@@ -262,26 +281,43 @@ server.get('/result/:questionId',(req,res)=>{
 server.get('/get-question-by-id',(req,res)=>{
     console.log(req.query)
     const questionId = req.query.questionId;
-    fs.readFile('./data.json', (err, data) => {
-        if (err) {
-            res.status(500).send('Internal server error!!!');
+    questionModel.find({}, (err, data) => {
+      if (err) {
+        res.status(500).send("Internal server error");
+      }
+      let selectQuestion;
+      for (let item of data) {
+        if (item.id === questionId) {
+          selectQuestion = item;
+          break;
         }
-
-        const question = JSON.parse(data);
-        let selectQueston;
-        for (let item of question){
-            if(item.id === Number(questionId)){
-                selectQueston = item;
-                break;
-            }
-        };
-
-        if(selectQueston){
-            res.status(200).json(selectQueston);
-        }else{
-            res.status(200).json({message: 'Question not found'});  
-        }
+      }
+      if (selectQuestion) {
+        res.status(200).json(selectQuestion);
+      } else {
+        res.status(200).json({ message: "Question not found" });
+      }
     });
+    // fs.readFile('./data.json', (err, data) => {
+    //     if (err) {
+    //         res.status(500).send('Internal server error!!!');
+    //     }
+
+    //     const question = JSON.parse(data);
+    //     let selectQueston;
+    //     for (let item of question){
+    //         if(item.id === Number(questionId)){
+    //             selectQueston = item;
+    //             break;
+    //         }
+    //     };
+
+    //     if(selectQueston){
+    //         res.status(200).json(selectQueston);
+    //     }else{
+    //         res.status(200).json({message: 'Question not found'});  
+    //     }
+    // });
 });
 
 server.get('/question-random', (req, res) => {
@@ -302,16 +338,21 @@ server.get('/question-random', (req, res) => {
   });
 
 server.get('/random-question',(err,res)=>{
-    fs.readFile('./data.json', (err, data) => {
-                if (err) {
-                    res.status(500).send('Internal server error!!!');
-                }
-                const question = JSON.parse(data);
-                const randomIndex = Math.floor(Math.random() * (question.length));
-                randomQuestion = question[randomIndex];
+    // fs.readFile('./data.json', (err, data) => {
+    //             if (err) {
+    //                 res.status(500).send('Internal server error!!!');
+    //             }
+    //             const question = JSON.parse(data);
+    //             const randomIndex = Math.floor(Math.random() * (question.length));
+    //             randomQuestion = question[randomIndex];
 
-                res.status(200).json(randomQuestion); 
-            })
+    //             res.status(200).json(randomQuestion); 
+    //         })
+    questionModel.find({},(err,data)=>{
+        if(err) throw err;
+       const index = Math.floor(Math.random() * data.length);
+       res.status(200).json(data[index]);
+      })
 });
 
 server.listen(3000, (err) => {

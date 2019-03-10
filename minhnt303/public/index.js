@@ -37,7 +37,7 @@ $(document).ready(() => {
                     window.location.href = `/`;
                 })
             } else {
-                document.getElementById('question-conten').innerText = 'question not found';
+                document.getElementById('question-content').innerText = 'question not found';
             }
         },
         error: (error) => {
