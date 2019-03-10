@@ -229,26 +229,33 @@ server.post('/create-question', async(req, res) => {
 server.get('/vote/:questionId/:vote', async (req, res)=>{
     const {questionId, vote} = req.params;//tg dg: const questionId = req.params; const vote = req.params;
     console.log(questionId, vote);
-    const questions = await questionModel.find();
-    for (let item of questions) {
-      if (String(item._id) === questionId) {
-        if (vote === 'yes') {
-          questionModel.updateOne({_id: questionId}, {$inc: {yes: 1}}, (err,data) => {
-            if (err) {
-              throw err;
-            }
-            console.log('vote success');
-          });
-        } else { 
-          questionModel.updateOne({_id: questionId}, {$inc: {no: 1}}, (err,data) => {
-            if (err) {
-              throw err;
-            }
-            console.log('vote success'); 
-          });
-        }
-      }
-    } 
+    const existedQuestion = await questionModel.findById(questionId).exec();
+    if(!existedQuestion){
+      res.status(404).end('Question not found');
+    }else {
+      await questionModel.findByIdAndUpdate(questionId, {[vote]:{$inc: 1}}).exec();
+      res.status(200).end('Update success')
+    }
+    // const questions = await questionModel.find();
+    // for (let item of questions) {
+    //   if (String(item._id) === questionId) {
+    //     if (vote === 'yes') {
+    //       questionModel.updateOne({_id: questionId}, {$inc: {yes: 1}}, (err,data) => {
+    //         if (err) {
+    //           throw err;
+    //         }
+    //         console.log('vote success');
+    //       });
+    //     } else { 
+    //       questionModel.updateOne({_id: questionId}, {$inc: {no: 1}}, (err,data) => {
+    //         if (err) {
+    //           throw err;
+    //         }
+    //         console.log('vote success'); 
+    //       });
+    //     }
+    //   }
+    // } 
     // fs.readFile('./data.json', (err, data) => {
     //     if (err) {
     //         res.status(500).send('Internal server error!!!');
@@ -278,26 +285,29 @@ server.get('/result/:questionId',(req,res)=>{
     res.status(200).sendFile(path.resolve(__dirname + '/public/vote-result.html'));
 });
 
-server.get('/get-question-by-id',(req,res)=>{
+server.get('/get-question-by-id',async(req,res)=>{
     console.log(req.query)
     const questionId = req.query.questionId;
-    questionModel.find({}, (err, data) => {
-      if (err) {
-        res.status(500).send("Internal server error");
-      }
-      let selectQuestion;
-      for (let item of data) {
-        if (item.id === questionId) {
-          selectQuestion = item;
-          break;
-        }
-      }
-      if (selectQuestion) {
-        res.status(200).json(selectQuestion);
-      } else {
-        res.status(200).json({ message: "Question not found" });
-      }
-    });
+    const question = await questionModel.findById(questionId).exec();
+    res.status(200).json(question);
+    // questionModel.find({}, (err, data) => {
+    //   if (err) {
+    //     res.status(500).send("Internal server error");
+    //   }
+    //   let selectQuestion;
+    //   for (let item of data) {
+    //     if (item.id === questionId) {
+    //       selectQuestion = item;
+    //       break;
+    //     }
+    //   }
+    //   if (selectQuestion) {
+    //     res.status(200).json(selectQuestion);
+    //   } else {
+    //     res.status(200).json({ message: "Question not found" });
+    //   }
+    // });
+
     // fs.readFile('./data.json', (err, data) => {
     //     if (err) {
     //         res.status(500).send('Internal server error!!!');
@@ -337,7 +347,7 @@ server.get('/question-random', (req, res) => {
     });
   });
 
-server.get('/random-question',(err,res)=>{
+server.get('/random-question',async (err,res)=>{
     // fs.readFile('./data.json', (err, data) => {
     //             if (err) {
     //                 res.status(500).send('Internal server error!!!');
@@ -348,11 +358,21 @@ server.get('/random-question',(err,res)=>{
 
     //             res.status(200).json(randomQuestion); 
     //         })
-    questionModel.find({},(err,data)=>{
-        if(err) throw err;
-       const index = Math.floor(Math.random() * data.length);
-       res.status(200).json(data[index]);
-      })
+
+    // questionModel.find({},(err,data)=>{
+    //     if(err) throw err;
+    //    const index = Math.floor(Math.random() * data.length);
+    //    res.status(200).json(data[index]);
+    //   })
+  try{
+    const randomQuestion = await questionModel.aggregate([
+      { $sample: {size:1} }
+    ]);
+    res.status(200).json(randomQuestion[0]);
+  }catch(error){
+    res.status(500).end(error.message)
+  }
+    
 });
 
 server.listen(3000, (err) => {
