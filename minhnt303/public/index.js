@@ -5,14 +5,14 @@ $(document).ready(() => {
         url: '/random-question',
         type: 'GET',
         success: (data) => {
-            if (data.id != null) {
+            if (data._id != null) {
                 document.getElementById('question-content').innerText = data.content;
                 document.getElementById('vote-yes').addEventListener('click', () => {
                     $.ajax({
-                        url: `vote/${data.id}/yes`,
+                        url: `vote/${data._id}/yes`,
                         type: 'GET',
                         success: (_result) => {
-                            window.location.href = `/result/${data.id}`;
+                            window.location.href = `/result/${data._id}`;
                         },
                         error: ''
                     })
@@ -24,14 +24,14 @@ $(document).ready(() => {
                         url: `vote/${data.id}/no`,
                         type: 'GET',
                         success: (data) => {
-                            window.location.href = `/result/${data.id}`;
+                            window.location.href = `/result/${data._id}`;
                         },
                         error: ''
                     })
                 })
 
                 document.getElementById('question-result').addEventListener('click',()=>{
-                    window.location.href = `/result/${data.id}`;
+                    window.location.href = `/result/${data._id}`;
                 })
                 document.getElementById('other-question').addEventListener('click',()=>{
                     window.location.href = `/`;

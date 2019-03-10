@@ -6,7 +6,8 @@ $(document).ready(() => {
         url: `/get-question-by-id?questionId=${questionId}`,
         type: 'GET',
         success: (data) => {
-            if (data.id) {
+            console.log(data._id)
+            if (data._id) {
                 document.getElementById('question-content').innerText = data.content;
                 document.getElementById('total-vote').innerText = data.yes + data.no;
                 if (data.yes == 0 & data.no == 0) {
