@@ -6,19 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Quyet De</title>
     <link rel="stylesheet" href="answer-question.css">
 </head>
 
 <body>
-    <ul>
+        <!-- <div class="topnav" id="myTopnav">
+                <a href="#home" class="active">Home</a>
+                <a href="#news">News</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div> -->
+
+    <!-- <ul>
         <li><a href="#" class="home">
                 Quyết.đê!
             </a></li>
         <li><a href="http://localhost:3000/create-question" class="question">Hỏi nhanh</a></li>
         <li><a href="http://localhost:3000/" class="answer">Đáp gọn</a></li>
-    </ul>
+    </ul> -->
 
+    <div class="topnav" id="myTopnav">
+            <a href="#" class="active">Quyết.đê!</a>
+            <a href="http://localhost:3000/create-question" class="question">Hỏi nhanh</a>
+            <a href="http://localhost:3000/" class="answer">Đáp gọn</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+              <i class="fa fa-bars"></i>
+            </a>
+    </div>
     <div class="spacer" data-height="100" style="height: 20px;"></div>
     <div class="container">
         <h1 id='question-content' class='text-center'></h1>
@@ -40,7 +59,7 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src='/index.js'></script>
+    <script src='index.js'></script>
 </body>
 
 </html>
