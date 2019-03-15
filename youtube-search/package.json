@@ -1,0 +1,15 @@
+{
+  "name": "youtube-search",
+  "version": "1.0.0",
+  "description": "youtube search ",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon ./main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "minhnt303",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
