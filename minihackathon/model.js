@@ -1,81 +1,134 @@
 const mongoose = require('mongoose');
 const PointSchema = new mongoose.Schema({
-    // name: {
-    //     type: String,
-    //     require: true,
-    // },
-    // round: {
-    //     type: Number,
-    //     default: 0,
-    // },
-    // point: {
-    //     type: Number,
-    //     default: 0,
-    // }
+    point: {
+        type: Array,
+        default: 0,
+        required : true
+    },
 
     player1: {
         name1: {
             type: String,
             require: true,
         },
-        roundplayer1: [{
-            round1: {
-                type: Number,
-                default: 0,
-            },
-            point1: {
-                type: Number,
-                default: 0,
-            }
-        }]
+        total1: {
+            type: Number,
+            default: 0,
+            required : true
+        },
+        // roundplayer1: [{
+        //     round1: {
+        //         type: Number,
+        //         default: 0,
+        //     },
+        //     point1: {
+        //         type: Number,
+        //         default: 0,
+        //     }
+        // }]
+        point1: {
+            type: Array,
+            default: 0,
+            required : true
+        },
+        round1: {
+            type: Number,
+            default: 1,
+            required : true
+        },
     },
     player2: {
         name2: {
             type: String,
             require: true,
         },
-        roundplayer2: [{
-            round2: {
-                type: Number,
-                default: 0,
-            },
-            point2: {
-                type: Number,
-                default: 0,
-            }
-        }]
+        total2: {
+            type: Number,
+            default: 0,
+            require: true,
+        },
+        // roundplayer2: [{
+        //     round2: {
+        //         type: Number,
+        //         default: 0,
+        //     },
+        //     point2: {
+        //         type: Number,
+        //         default: 0,
+        //     }
+        // }]
+        point2: {
+            type: Array,
+            default: 0,
+            required : true
+        },
+        round2: {
+            type: Number,
+            default: 1,
+            required : true
+        },
     },
     player3: {
         name3: {
             type: String,
             require: true,
         },
-        roundplayer3: [{
-            round3: {
-                type: Number,
-                default: 0,
-            },
-            point3: {
-                type: Number,
-                default: 0,
-            }
-        }]
+        total3: {
+            type: Number,
+            default: 0,
+            required : true
+        },
+        // roundplayer3: [{
+        //     round3: {
+        //         type: Number,
+        //         default: 0,
+        //     },
+        //     point3: {
+        //         type: Number,
+        //         default: 0,
+        //     }
+        // }]
+        point3: {
+            type: Array,
+            default: 0,
+            required : true
+        },
+        round3: {
+            type: Number,
+            default: 1,
+            required : true
+        },
     },
     player4: {
         name4: {
             type: String,
             require: true,
         },
-        roundplayer4: [{
-            round4: {
-                type: Number,
-                default: 0,
-            },
-            point4: {
-                type: Number,
-                default: 0,
-            }
-        }]
+        total4: {
+            type: Number,
+            default: 0,
+            require: true,
+        },
+        // roundplayer4: [{
+        //     round4: {
+        //         type: Number,
+        //         default: 0,
+        //     },
+        //     point4: {
+        //         type: Number,
+        //         default: 0,
+        //     }
+        // }]
+        point4: {
+            type: Array,
+            default: 0,
+            require: true,
+        },
+        round4: {
+            type: Number,
+            default: 1,
+            required : true
+        },
     }
 
     // name1: {

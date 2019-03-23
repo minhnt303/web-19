@@ -36,11 +36,6 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
     });
 
     server.post("/", async (req, res) => {
-        const names = [];
-        // names.push(req.body.player1);
-        // names.push(req.body.player2);
-        // names.push(req.body.player3);
-        // names.push(req.body.player4);
         const player = {
             player1: { name1: req.body.name1 },
             player2: { name2: req.body.name2 },
@@ -67,6 +62,53 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
         const gameId = req.query.gameId;
         const id = await pointModel.findById(gameId).exec();
         res.status(200).json(id);
+    })
+
+    server.post("/get-score/:gameId", async (req, res) => {
+        const { gameId } = req.params;//tg dg: const questionId = req.params; const vote = req.params;
+        const existedGame = await pointModel.findById(gameId).exec();
+        console.log(existedGame)
+        console.log(existedGame.player1.total1)
+        console.log(existedGame.player1.point1[0])
+        console.log(existedGame.player1.round1)
+        const count = 1;
+        // const a = {
+        //     player1: {
+        //         name1: existedGame.player1.name1,
+        //         roundplayer1: [{
+        //             round1: 2,
+        //             point1: 1
+        //         }],
+        //     }
+        // }
+        // const result = await pointModel.create(a);
+        // console.log(result)
+        // await pointModel.findByIdAndUpdate(gameId, {
+        //     player1: {
+        //         name1:existedGame.player1.name1,
+        //         roundplayer1: [{
+        //             round1: count++,
+        //             point1: 1
+        //         }]
+        //     }
+        // }).exec();
+        console.log("total "+req.body.point1)
+        let a = parseFloat(req.body.point1) + (existedGame.player1.total1);
+        // let b = count + existedGame.player1.round1;
+        console.log(a)
+        await pointModel.updateOne({ _id: gameId }, {
+            player1: {
+                name1: existedGame.player1.name1,
+                total1: a,
+                point1: req.body.point1,
+                round1: 1
+            }
+        },
+        {$push:{point: 1}}
+        );
+        res.status(200).json({
+            player1:{total1: a}
+    })
     })
     // server.post("/games", async (req, res) => {
     //     const newRound = {

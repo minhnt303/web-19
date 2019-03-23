@@ -44,3 +44,9 @@
     border: none;
     border-radius: 4px;
 }
+.container{
+    border-bottom: 1px solid #BF1363;
+}
+.form-control{
+    height:30px
+}
