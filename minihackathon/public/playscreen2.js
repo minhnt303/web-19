@@ -31,6 +31,7 @@ $(document).ready(() => {
             document.getElementById('point-2').value = data.player2.point2[0];
             document.getElementById('point-3').value = data.player3.point3[0];
             document.getElementById('point-4').value = data.player4.point4[0];
+            
             }
             document.getElementById('player-1').innerText = data.player1.name1;
             document.getElementById('player-2').innerText = data.player2.name2;
