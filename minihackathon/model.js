@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
 const PointSchema = new mongoose.Schema({
-    point: {
-        type: Array,
-        default: 0,
-        required : true
-    },
 
     player1: {
         name1: {

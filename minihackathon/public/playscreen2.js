@@ -33,28 +33,67 @@ $(document).ready(() => {
             document.getElementById('total-2').innerText = data.player2.total2;
             document.getElementById('total-3').innerText = data.player3.total3;
             document.getElementById('total-4').innerText = data.player4.total4;
+            document.getElementById('sumtotal').innerText = data.player1.total1 + data.player2.total2 + data.player3.total3 + data.player4.total4
         },
         error: (error) => {
             console.log(error);
         }
     });
     document.getElementById('add-round').addEventListener('click', (e) => {
-        e.preventDefault();
-        let point1 = document.getElementById("point-1").value;
-        let point2 = document.getElementById("point-2").value;
-        let point3 = document.getElementById("point-3").value;
-        let point4 = document.getElementById("point-4").value;
-        console.log(point1, point2, point3, point4)
+        let player_score = document.getElementsByClassName("form-control");
+        let index = player_score.length;
+        let a1 = player_score[index-4].value
+        let a2 = player_score[index-3].value
+        let a3 = player_score[index-2].value
+        let a4 = player_score[index-1].value
+        console.log(player_score[index-4].value,player_score[index-3].value, player_score[index-2].value, player_score[index-1].value)
         $.ajax({
             url: `/get-score/${gameId}`,
             type: 'POST',
-            data: {point1: point1, point2: point2, point3: point3, point4: point4},
+            data: { point1: a1, point2: a2, point3: a3, point4: a4 },
             success: data => {
-                console.log(data,point1)
+                console.log(data)
                 document.getElementById('total-1').innerText = data.player1.total1;
-                // document.getElementById('total-3').innerText = data.player3.total3;
-                // document.getElementById('total-4').innerText = data.player4.total4;
-                // document.getElementById('sumtotal').innerText = data.player1.total1 + data.player2.total2 + data.player3.total3 + data.player4.total4
+                document.getElementById('total-2').innerText = data.player2.total2;
+                document.getElementById('total-3').innerText = data.player3.total3;
+                document.getElementById('total-4').innerText = data.player4.total4;
+                document.getElementById('sumtotal').innerText = data.player1.total1 + data.player2.total2 + data.player3.total3 + data.player4.total4;
+                $("#score-round").append(`
+             <div class="row bg-light">
+        <div class="col-sm">Round ${data.player1.round1}</div>
+        <div class="col-sm">
+          <input
+            class="form-control"
+            rows="1"
+       
+            name="score"
+          ></input> 
+        </div>
+        <div class="col-sm">
+          <input
+            class="form-control"
+            rows="1"
+    
+            name="score"
+          ></input>
+        </div>
+        <div class="col-sm">
+          <input
+            class="form-control"
+            rows="1"
+
+            name="score"
+          ></input>
+        </div>
+        <div class="col-sm">
+          <input
+            class="form-control"
+            rows="1"
+            name="score"
+          ></input>
+        </div>
+      </div>
+             `)
             }
         })
     })
