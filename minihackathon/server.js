@@ -136,8 +136,8 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
             player2: {
                 name2: existedGame.player2.name2,
                 total2: a2,
-                point3: d2,
-                round4: c2
+                point2: d2,
+                round2: c2
             },
             player3: {
                 name3: existedGame.player3.name3,
