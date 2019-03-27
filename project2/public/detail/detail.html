@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/detail/detail.css">
+
+</head>
+
+<body>
+    <nav class="floating-menu">
+        <i class="fas fa-shopping-cart" style="border-top: 1px solid rgb(218, 218, 218)"></i>
+        <i class="fas fa-bookmark"></i>
+        <a href="#"><i class="fas fa-chevron-up"></i></a>
+        <i class="fas fa-envelope"></i>
+    </nav>
+    <div class="main_page">
+        <div class="header_1">
+            <div class="float_left">
+                <span class="glyphicon glyphicon-earphone">&thinsp;<span
+                        class="mobile_number">034.468.1886</span>&thinsp;<span>Free&thinsp;Shipping&thinsp;every&thinsp;Friday</span></span>
+            </div>
+            <div class="float_right" style="color: white">
+                <span class="glyphicon glyphicon-star">&thinsp;<a>Wishlist</a></span>&nbsp;
+                <span class="glyphicon glyphicon-globe">&thinsp;<a>English</a></span>&nbsp;
+                <span class="glyphicon glyphicon-usd">&thinsp;<a>Currency:USD</a></span>
+            </div>
+        </div>
+        <div class="spacer" data-height="100" style="height: 40px;"></div>
+        <div class="header_2">
+            <ul>
+                <li><a class="active" href="http://localhost:3000">TECH</a></li>
+                <li><a href="http://localhost:3000">HOME</a></li>
+                <li><a href="#news">CATEGORIES</a></li>
+                <li><a href="#news">LAPTOP</a></li>
+                <li><a href="#contact">CONSOLE</a></li>
+                <li><a href="#about">TECHGEAR</a></li>
+                <li><a href="#about">CONTACT</a></li>
+                <li><input class="form-control" rows="1" name="score" id="search-box-input1" style="margin-top:8px"
+                        placeholder="Search"></input></li>
+                <li>
+                    <div id="search-box-button" style="background-color: red; margin: 7px; border-radius: 4px;">
+                        <button class="btn" id="search-box-1"><i class="fas fa-search"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="spacer" data-height="100" style="height: 50px;"></div>
+        <div id="product-item">
+            <!-- <div class="row" style="height: 350px; background-color: whitesmoke; border-radius: 4px; ">
+                <div class="col-7"
+                    style="padding: 0px;height: 350px; text-align: center; padding-top: 20px;border-bottom:1px solid rgb(218, 218, 218)">
+                    <img src="https://cdn.wccftech.com/wp-content/uploads/2019/02/HP-presidents-day-sale-wccftech-feature-740x366.jpg"
+                        height="270px" width="90%" style="border-radius: 4px;">
+                </div>
+                <div class="col-5"
+                    style="padding: 0px;height: 350px;width: 100%;border-bottom:1px solid rgb(218, 218, 218)">
+                    <div class="product-name">
+                        <h1 style="width: 100%;">jhjshjahsjah sjahsjahs jasjhsjnsjasj ajusdddddddd ddddd dddd ddddd
+                            dddddd</h1>
+                    </div>
+                    <div class="product-seller"
+                        style="width: 100%; border-bottom:1px solid rgb(218, 218, 218);padding-left:0px;">
+                        <div class="row">
+                            <div class="col-1" style="width: 100%;padding-right:0px;padding-top:5px;">
+                                <h6>by</h6>
+                            </div>
+                            <div class="col-10" style="width: 100%; padding-left:2px; color: rgb(56, 56, 255);">
+                                <h5>Nintendo switchshs</h5>
+                            </div>
+                        </div>
+                        <h6 style="margin-top: 0px;color: rgb(56, 56, 255);">Be the first to review this item</h6>
+                    </div>
+                    <div class="product-price" style="width: 100%; padding-left:0px;">
+                        <div class="row">
+                            <div class="col-2" style="width: 100%;padding-right:0px;padding-top:5px;">
+                                <h6>Price:</h6>
+                            </div>
+                            <div class="col-10" style="width: 100%; padding-left:2px; color: rgb(56, 56, 255);">
+                                <h3 style="margin-top: 7px; color: rgb(211, 49, 0)">$1212121.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-quantity" style="width: 100%; padding-left:0px;">
+                        <h5 style="color: rgb(211, 49, 0);margin-top: 0px;">100 left in stock - order soon.</h5>
+                        <h6 style="margin-right: 20px">This item does not ship to Vietnam. Please check other sellers
+                            who may ship internationally.</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height: 40px; background-color: whitesmoke; border-radius: 4px;">
+                <div class="col-6"
+                    style="text-align: right;padding-top: 10px;border-bottom:1px solid rgb(218, 218, 218)">
+                    <button class="btn" style=" padding: 0px"><i class="fas fa-bookmark"></i> FAVORITE</button></div>
+                <div class="col-6"
+                    style="text-align: left;padding-top: 10px;border-bottom:1px solid rgb(218, 218, 218)">
+                    <button class="btn" style=" padding: 0px">ADD TO CART <i class="fas fa-shopping-cart"></i></button>
+                </div>
+            </div>
+            <div class="row" style="height: 300px; background-color: whitesmoke; border-radius: 4px;">
+                <div class="col-12">
+                    <div>
+                        <h3 style="padding-left:29px;background-color: whitesmoke; border-radius: 4px;">
+                            Product description:</h3>
+                    </div>
+                    <div class="product-detail">
+                        <h4 style="padding-left:29px; background-color: whitesmoke; border-radius: 4px;">
+                            hajdjsadjadsja ajsdhahdjadias ajsdhsahdjahdi askjdjkasjdi</h4>
+                    </div>
+                </div>
+
+            </div> -->
+        </div>
+    </div>
+    <div class="spacer" data-height="100" style="height: 50px;"></div>
+    <div class="deal" style="width: 100%; text-align: center">
+
+        <div class="spacer" data-height="100" style="height: 30px;"></div>
+        <img
+            src="https://cdn.wccftech.com/wp-content/uploads/2019/02/HP-presidents-day-sale-wccftech-feature-740x366.jpg">
+
+        <div class="spacer" data-height="100" style="height: 30px;"></div>
+    </div>
+    <div class="footer_1">
+
+        <div class="spacer" data-height="100" style="height: 20px;"></div>
+        <h2> GET THE LATEST UPDATES FROM TECH</h2>
+        <h4>SIGN UP FOR OUR NEW SLETTER</h4>
+        <div class="spacer" data-height="100" style="height: 20px;"></div>
+        <input class="form-control" rows="1" name="score" id="enteremail" placeholder="Please enter your email here">
+        <div class="spacer" data-height="100" style="height: 10px;"></div>
+        <span><button class="btn"
+                style="background-color: rgba(235, 0, 0);color: white;border-radius: 4px;padding-top: 10px;padding-bottom: 10px;padding-left: 15px;padding-right: 15px;">SUBCRIBE</button></span>
+
+        <div class="spacer" data-height="100" style="height: 20px;"></div>
+    </div>
+
+    <div class="footer_2">
+        <div class="spacer" data-height="100" style="height: 30px;"></div>
+        <div class="footer_col">
+            <div class="row">
+                <div class="col-3">
+                    <h3>SUPPORT</h3><br>
+                    <a>How to Order?</a><br>
+                    <a>Payments</a><br>
+                    <a>Assistance</a><br>
+                    <a>Delivery</a>
+                </div>
+                <div class="col-3">
+                    <h3>ABOUT US</h3><br>
+                    <a>About Shop</a><br>
+                    <a>Promotions</a><br>
+                    <a>Discount Cards</a>
+                </div>
+                <div class="col-3">
+                    <h3>DUTIES</h3><br>
+                    <a>Terms and Conditions</a><br>
+                    <a>Shop Policy</a><br>
+                    <a>Contact Us</a>
+                </div>
+                <div class="col-3">
+                    <div class="spacer" data-height="100" style="height: 20px;"></div>
+                    <div class="row" style="border-bottom: 1px solid white;  padding-bottom: 10px;">
+                        <div class="col-2" style="padding-left:0px;padding-right: 0px;">
+                            <div class="email"><i class="fas fa-envelope"></i></div>
+                        </div>
+                        <div class="col-2" style="padding-left:0px;padding-right: 0px;">
+                            <div class="map"><i class="fas fa-map-marker-alt"></i></div>
+                        </div>
+                        <div class="col-2" style="padding-left:0px;padding-right: 0px;">
+                            <div class="facebook"><i class="fab fa-facebook-square"></i></div>
+                        </div>
+                        <div class="col-2" style="padding-left:0px;padding-right: 0px;">
+                            <div class="instagram"><i class="fab fa-instagram"></i></div>
+                        </div>
+                        <div class="col-2" style="padding-left:0px;padding-right: 0px;">
+                            <div class="twitter"><i class="fab fa-twitter"></i></div>
+                        </div>
+                        <div class="col-2" style="padding-left:0px;padding-right: 0px;">
+                            <div class="youtube"><i class="fab fa-youtube"></i></div>
+                        </div>
+                        <!-- <div class="col-8" style="padding-left:0px;padding-right: 0px;">
+                            <div class="row" style="text-align: center">
+                                <div class="col-2">
+                                    <i class="fab fa-facebook-square"></i></div>
+                                <div class="col-2">
+                                    <i class="fab fa-instagram"></i></div>
+                                <div class="col-2">
+                                    <i class="fab fa-twitter"></i></div>
+                                <div class="col-2">
+                                    <i class="fab fa-youtube"></i></div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <div class="spacer" data-height="100" style="height: 20px;"></div>
+                    <div class="phone">
+                        <div class="row">
+                            <div class="col-4" style="padding: 0px;">
+                                <div class="spacer" data-height="100" style="height: 10px;"></div>
+                                <a>OUR PHONE:</a>
+                            </div>
+                            <div class="col-lg">
+                                <h4>0988 66 9897 0946 53 8092</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="spacer" data-height="100" style="height: 30px;"></div>
+        <div class="search-box" id="search-box">
+            <div class="searchrow">
+                <div class="row">
+                    <div class="col-1"
+                        style="background-color: red; text-align: center; padding: 0px; margin-left: 15px;border-radius: 4px;">
+                        <h2 style="margin: 0px;">TECH</h2>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-control" rows="1" name="score" id="point-1" placeholder="Search"></input>
+                    </div>
+                    <div class="search-box-button" style="background-color: red;border-radius: 4px;">
+                        <button class="btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer" data-height="100" style="height: 30px;"></div>
+    </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/detail/detail.js"></script>
+</body>
+
+</html>

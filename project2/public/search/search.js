@@ -10,9 +10,6 @@ window.onload = () => {
             let pricediscount1 = data[0].price * (100 - data[0].discount) / 100;
             let pricediscount2 = data[1].price * (100 - data[1].discount) / 100;
             let pricediscount3 = data[2].price * (100 - data[2].discount) / 100;
-            // document.getElementById("product-1-link").addEventListener('click',(e)=>{
-            //     console.log("asdasdsad")
-            // })
 
             var list2 = `<div class="col-3" style="background-color:rgba(235, 0, 0, 0.75);height: 300px;color: white;font-family: 'Roboto', sans-serif;">
                             <div>
@@ -24,7 +21,7 @@ window.onload = () => {
                 let pricediscount = data[i].price * (100 - data[i].discount) / 100;
                 list2 += `<div class="col-3"
                 style="background-color:white;height: 300px;border-right: 1px solid rgb(218, 218, 218);border-bottom: 1px solid rgb(218, 218, 218);color: black;font-family: 'Roboto', sans-serif; padding: 20px;">
-                <a href="http://localhost:3000/detail/${data[i]._id}" id="product-1-link">
+                <a href="#" id="product-1-link">
                     <div style="height: 75%;">
                         <div id="product-1"><img src="${data[i].image}" height="100%" width="100%"></div>
                     </div>
@@ -49,8 +46,8 @@ window.onload = () => {
                 </a>
             </div>`;
             }
+            console.log(list2)
             document.getElementById("best_selling_product_row").innerHTML = list2;
-
             // document.getElementById("product-1").innerHTML = `<img src="${data[0].image}" height="100%" width="100%">`;
             // document.getElementById("product-1-discount").innerHTML = `<h4 style="color: black;">$${pricediscount1}0</h4>`;
             // document.getElementById("product-1-price").innerHTML = `<h5 style="color:rgb(218, 218, 218);">$${data[0].price}.00</h5>`;
@@ -70,11 +67,17 @@ window.onload = () => {
             // document.getElementById("product-3-evaluate").innerHTML = `<h5 style="float: right;color: black;">${data[2].evaluate}  <i class="fas fa-star"></i></h5>`;
             // document.getElementById("product-3-name").innerHTML = `<h4 style="color: black;">${data[2].name}</h4>`;
 
+            const pathname = window.location.pathname;
+            const searchName = pathname.split('/')[pathname.split('/').length - 1];
+            document.getElementById("search-box-input1").value = searchName;
+            console.log(searchName.charAt(0).toUpperCase() + searchName.slice(1))
+            let name = searchName.charAt(0).toUpperCase() + searchName.slice(1);
             var list = "";
             for (var i = 0; i < data.length; i++) {
-                let pricediscount = data[i].price * (100 - data[i].discount) / 100;
+                if (data[i].seller === name || data[i].type === name || data[i].evaluate === searchName) {
+                    let pricediscount = data[i].price * (100 - data[i].discount) / 100;
 
-                list += `<div class="col-3"
+                    list += `<div class="col-3"
                 style="background-color:white;height: 300px;border-right: 1px solid rgb(218, 218, 218);border-left: 1px solid rgb(245, 245, 245);border-top: 1px solid rgb(245, 245, 245);border-bottom: 1px solid rgb(218, 218, 218);color: black;font-family: 'Roboto', sans-serif;padding-bottom: 10px;padding-top: 10px;border-radius:4px;margin-top:10px;">
                 <div style="height: 65%;">
                     <div id="collection-${i}">
@@ -123,8 +126,8 @@ window.onload = () => {
                                 <div class="col-1" style="padding: 0px;"></div>
                                 <div class="col-5"
                                     style="border: 1px solid rgb(218, 218, 218);text-align: center;padding: 3px;border-radius: 4px;">
-                                    <a href="http://localhost:3000/detail/${data[i]._id}" style="width:100%;"><button class="btn" style="text-align: center; padding: 0px"><i
-                                    class="fas fa-info"></i></button></div></a>
+                                    <button class="btn" style="text-align: center; padding: 0px"><i
+                                            class="fas fa-info"></i></button></div>
                             </div>
                         </div>
                         <div class="col-1" style="padding: 0px;"></div>
@@ -138,11 +141,16 @@ window.onload = () => {
                     </div>
                 </div>
             </div>`;
+                }
+                else {
+                    console.log("Can not find the item you want!!!");
+                    // window.location.href = `/`;
+                }
             }
 
             document.getElementById("collection").innerHTML = list;
 
-            document.getElementById("search-box-1").addEventListener('click',(e)=>{
+            document.getElementById("search-box-1").addEventListener('click', (e) => {
                 let searchItem = document.getElementById("search-box-input1").value;
                 console.log(searchItem)
 

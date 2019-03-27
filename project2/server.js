@@ -39,6 +39,14 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
         })
     });
 
+    server.get("/search/:searchname", (req, res) => {
+        res.status(200).sendFile(path.resolve(__dirname + "/public/search/search.html"));
+    });
+
+    server.get("/detail/:productid",(req, res) => {
+        res.status(200).sendFile(path.resolve(__dirname + "/public/detail/detail.html"));
+    });
+
     server.listen(3000, (err) => {
         if (err) throw err;
         console.log('Server is listen on post 3000..')
