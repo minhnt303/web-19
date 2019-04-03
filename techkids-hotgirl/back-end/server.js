@@ -38,6 +38,9 @@ mongoose.connect('mongodb://localhost:27017/techkids-hotgirl', (err) => {
     app.get('/login',(req,res)=>{
         res.status(200).sendFile(path.resolve(__dirname + '/public/login.html'));
     });
+    app.get('/port',(req,res)=>{
+        res.status(200).sendFile(path.resolve(__dirname + '/public/port.html'));
+    });
     app.use('/', mainfrontEndRoutes);
     //start server
     app.listen(3000, (err) => {

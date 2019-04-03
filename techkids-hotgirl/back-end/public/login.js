@@ -16,7 +16,9 @@ window.onload = () => {
             },
             success: data => {
                 console.log(data + 'INFO')
+
               window.alert(data.message);
+              window.location.href = `/port`;
             },
             error: error => {
               console.log(error);
