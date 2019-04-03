@@ -18,7 +18,7 @@ window.onload = () => {
             <div class="col-7"
                 style="padding: 0px;height: 450px; text-align: center; padding-top: 20px;border-bottom:1px solid rgb(218, 218, 218)">
                 <img src="${data[i].image}"
-                    height="270px" width="90%" style="border-radius: 4px;">
+                    height="auto" width="90%" style="border-radius: 4px;">
             </div>
             <div class="col-5"
                 style="padding: 0px;height: 450px;width: 100%;border-bottom:1px solid rgb(218, 218, 218)">
@@ -28,7 +28,7 @@ window.onload = () => {
                 <div class="product-seller"
                     style="width: 100%; border-bottom:1px solid rgb(218, 218, 218);padding-left:0px;">
                     <div class="row">
-                        <div class="col-1" style="width: 100%;padding-right:0px;padding-top:5px;">
+                        <div class="col-1" style="width: 100%;padding-right:0px;padding-top:3px;">
                             <h6>by</h6>
                         </div>
                         <div class="col-10" style="width: 100%; padding-left:2px; color: rgb(56, 56, 255);">

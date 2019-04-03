@@ -35,7 +35,8 @@ const UserSchema = new mongoose.Schema({
     createdAt: {
         type: Date, 
         default: new Date(),
-    }
+    },
+    permissions:[String]
 });
 
 const userSchema = mongoose.model('User', UserSchema);
