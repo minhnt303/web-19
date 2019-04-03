@@ -54,12 +54,13 @@ class App extends Component {
         <div className='totoList'>
           {this.state.todos.map((item, index) => {
             return (
-              <div key={index}>
-                <div>{item}
-                  <button onClick={() => {
-                    this.handleDeleteItem(item);
-                  }}>Delete</button></div>
-              </div>
+              // <div key={index}>
+              //   <div>{item}
+              //     <button onClick={() => {
+              //       this.handleDeleteItem(item);
+              //     }}>Delete</button></div>
+              // </div>
+              <TodoItem key={index} item={item} index={index} handleDelete={this.handleDeleteItem}/>
             );
           })}
         </div>

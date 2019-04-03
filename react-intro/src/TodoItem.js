@@ -3,7 +3,11 @@ import React from 'react';
 const TodoItem = (props) => {
     return(
         <div>
-            {props.item} <button>Delete</button>
+            {props.item} <button onClick={()=>{
+                props.handleDelete(props.item)
+            }} >Delete</button>
+
+            {/* {props.children} sử dụng khi thêm thẻ vào tag TodoItem*/}
         </div>
     );
 };
