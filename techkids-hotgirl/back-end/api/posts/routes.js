@@ -4,6 +4,7 @@ const postRouter = express();
 
 postRouter.post('/', async (req, res) => {
     try {
+        console.log(req.session.user)
         if (!req.session.user) {
             res.status(403).json({
                 message: 'Unauthenticated'
