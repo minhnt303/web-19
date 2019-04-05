@@ -1,9 +1,15 @@
 import React from 'react';
 
 const TodoItem = (props) => {
-    return(
+    return (
         <div>
-            {props.item} <button onClick={()=>{
+            {props.isDone ? <strike>{props.item}</strike> : <span>{props.item}</span> //props.item
+            }
+            
+            <button onClick={() => {
+                props.handleDone(props.item)
+            }} >Done</button>
+            <button onClick={() => {
                 props.handleDelete(props.item)
             }} >Delete</button>
 

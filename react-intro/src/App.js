@@ -7,6 +7,7 @@ class App extends Component {
   state = {
     inputValue: '',
     todos: [], //array of todo items[string]
+    dones: [],
   };
 
   handleSubmit = (e) => {
@@ -16,14 +17,13 @@ class App extends Component {
     this.setState({
       // todos: this.state.todos.push(newTodoItem)
       todos: [...this.state.todos, newTodoItem],
+      
+    //clear value of input
       inputValue: '',
     })
-    //clear value of input
   }
 
   handleInputChange = (e) => {
-    console.log(e.target.value)
-
     this.setState({
       inputValue: e.target.value,
     })
@@ -39,6 +39,12 @@ class App extends Component {
           return true;
         }
       })
+    })
+  }
+  handleDoneItem = (item) => {
+    console.log('done' + item)
+    this.setState({
+      dones: [...this.state.dones, item]
     })
   }
   render() {
@@ -60,7 +66,8 @@ class App extends Component {
               //       this.handleDeleteItem(item);
               //     }}>Delete</button></div>
               // </div>
-              <TodoItem key={index} item={item} index={index} handleDelete={this.handleDeleteItem}/>
+              <TodoItem key={index} item={item} index={index} handleDelete={this.handleDeleteItem}
+              handleDone={this.handleDoneItem} isDone={this.state.dones.indexOf(item)>-1}/>
             );
           })}
         </div>
