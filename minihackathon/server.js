@@ -35,7 +35,7 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
         res.status(200).sendFile(path.resolve(__dirname + "/public/index.html"));
     });
 
-    server.post("/", async (req, res) => {
+    server.post("/api/game", async (req, res) => {
         const player = {
             player1: { name1: req.body.name1 },
             player2: { name2: req.body.name2 },
@@ -174,8 +174,8 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
     //         id1: resultround._id
     //     });
     // })
-    server.listen(8080, (err) => {
+    server.listen(3001, (err) => {
         if (err) throw err;
-        console.log('Server is listen on post 8080..')
+        console.log('Server is listen on post 3001..')
     });
 });
