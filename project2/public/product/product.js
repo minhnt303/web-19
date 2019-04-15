@@ -1,12 +1,9 @@
 window.onload = () => {
-    console.log("gameId")
     $.ajax({
         url: `/api/product`,
         type: 'GET',
         success: (data) => {
-            console.log(data[0]._id)
             console.log(data.length)
-            console.log(data[0].openingimage);
             let pricediscount1 = data[0].price * (100 - data[0].discount) / 100;
             let pricediscount2 = data[1].price * (100 - data[1].discount) / 100;
             let pricediscount3 = data[2].price * (100 - data[2].discount) / 100;
@@ -130,24 +127,58 @@ window.onload = () => {
                         <div class="col-1" style="padding: 0px;"></div>
                         <div class="col-5"
                             style="text-align: center;border: 1px solid rgba(235, 0, 0);text-align: center;padding: 3px; background-color: rgba(235, 0, 0);border-radius: 4px;">
-                            <button class="btn"
+                            <button class="btn" id ="add-to-cart"
                                 style="text-align: center; padding: 0px; color: white; font-weight: bold;">ADD
-                                TO CARD</button>
+                                TO CART</button>
                         </div>
                         <div class="col-1" style="padding: 0px;width: 8.016px;"></div>
                     </div>
                 </div>
             </div>`;
+
+                console.log(data[i]._id)
             }
-
             document.getElementById("collection").innerHTML = list;
+            document.getElementById('add-to-cart').addEventListener('click', (e) => {
+                console.log(1)
+            })
 
-            document.getElementById("search-box-1").addEventListener('click',(e)=>{
+            document.getElementById("search-box-1").addEventListener('click', (e) => {
                 let searchItem = document.getElementById("search-box-input1").value;
                 console.log(searchItem)
 
                 window.location.href = `/search/${searchItem}`;
             })
+            if (localStorage.getItem('user') != null) {
+                console.log('there is user')
+                $.ajax({
+                    url: '/api/user',
+                    type: 'GET',
+                    success: (userdata) => {
+                        for (let i = 0; i < userdata.length; i++) {
+                            if (userdata[i].email == localStorage.getItem('user')) {
+                                document.getElementById('login-register-button').innerHTML = `
+                                    <a style="margin-left:20px;">Hello! ${userdata[i].username}</a>
+                                    <button class="btn btn-default" id='logout-button'>Logout</button>`;
+                                document.getElementById('logout-button').addEventListener('click', (e) => {
+                                    window.location.href = `http://localhost:3000`;
+                                    localStorage.removeItem('user');
+                                })
+                                break;
+                            }
+                        }
+                    },
+                    error: (error) => { console.log(error) }
+                })
+
+
+            } else {
+                document.getElementById('login-register-button').innerHTML = `
+                    <a href="http://localhost:3000/login"><button class="btn btn-default">Login</button></a>
+                    <a href="http://localhost:3000/register"><button class="btn btn-default">Register</button></a>`
+                console.log('there is no user')
+            }
+
         },
         error: (error) => {
             console.log(error);

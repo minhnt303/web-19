@@ -1,5 +1,8 @@
 {
   "name": "react-intro",
+  "engines": {
+    "node": "10.x"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {

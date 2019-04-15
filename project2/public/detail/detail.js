@@ -18,7 +18,7 @@ window.onload = () => {
             <div class="col-7"
                 style="padding: 0px;height: 450px; text-align: center; padding-top: 20px;border-bottom:1px solid rgb(218, 218, 218)">
                 <img src="${data[i].image}"
-                    height="auto" width="90%" style="border-radius: 4px;">
+                    height="95%" width="90%" style="border-radius: 4px;">
             </div>
             <div class="col-5"
                 style="padding: 0px;height: 450px;width: 100%;border-bottom:1px solid rgb(218, 218, 218)">
