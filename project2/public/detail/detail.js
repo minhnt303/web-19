@@ -60,7 +60,7 @@ window.onload = () => {
                 <button class="btn" style=" padding: 0px"><i class="fas fa-bookmark"></i> FAVORITE</button></div>
             <div class="col-6"
                 style="text-align: left;padding-top: 10px;border-bottom:1px solid rgb(218, 218, 218)">
-                <button class="btn" style=" padding: 0px">ADD TO CART <i class="fas fa-shopping-cart"></i></button>
+                <button class="btn" style=" padding: 0px" id="add">ADD TO CART <i class="fas fa-shopping-cart"></i></button>
             </div>
         </div>
         <div class="row" style="height: 300px; background-color: whitesmoke; border-radius: 4px;">
@@ -81,6 +81,33 @@ window.onload = () => {
                 }
             }
 
+            document.getElementById('add').addEventListener('click', (e) => {
+                console.log(searchName)
+                $.ajax({
+                    url: '/api/user',
+                    type: 'GET',
+                    success: (userdata) => {
+                        for (let i = 0; i < userdata.length; i++) {
+                            if (userdata[i].email == localStorage.getItem('user')) {
+                                // document.getElementById('cart').innerHTML = `<h1>asdas</h1>`
+                                console.log(userdata[i]._id)
+                                $.ajax({
+                                    url: `/cart/${userdata[i]._id}/${searchName}`,
+                                    type: 'GET',
+                                    success: (postuserdata) => {
+                                        console.log(postuserdata)
+                                        window.location.href = `/cart`;
+                                    },
+                                    error: (error) => { console.log(error) }
+                                })
+                                break;
+                            }
+                        }
+                    },
+                    error: (error) => { console.log(error) }
+                })
+            })
+
 
             document.getElementById("search-box-1").addEventListener('click', (e) => {
                 let searchItem = document.getElementById("search-box-input1").value;
@@ -88,6 +115,33 @@ window.onload = () => {
 
                 window.location.href = `/search/${searchItem}`;
             })
+            if (localStorage.getItem('user') != null) {
+                console.log('there is user')
+                $.ajax({
+                    url: '/api/user',
+                    type: 'GET',
+                    success: (userdata) => {
+                        for (let i = 0; i < userdata.length; i++) {
+                            if (userdata[i].email == localStorage.getItem('user')) {
+                                document.getElementById('login-register-button').innerHTML = `
+                                    <a style="margin-left:20px;">Hello! ${userdata[i].username}</a>
+                                    <button class="btn btn-default" id='logout-button'>Logout</button>`;
+                                document.getElementById('logout-button').addEventListener('click', (e) => {
+                                    window.location.href = `http://localhost:3000`;
+                                    localStorage.removeItem('user');
+                                })
+                                break;
+                            }
+                        }
+                    },
+                    error: (error) => { console.log(error) }
+                })
+            } else {
+                document.getElementById('login-register-button').innerHTML = `
+                    <a href="http://localhost:3000/login"><button class="btn btn-default">Login</button></a>
+                    <a href="http://localhost:3000/register"><button class="btn btn-default">Register</button></a>`
+                console.log('there is no user')
+            }
         },
         error: (error) => {
             console.log(error);

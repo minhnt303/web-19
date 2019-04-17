@@ -11,6 +11,10 @@ const UsertSchema = new mongoose.Schema({
     password: {
         type: String,
         require: true,
+    },
+    cart:{
+        type: Array,
+        require:true,
     }
 });
 

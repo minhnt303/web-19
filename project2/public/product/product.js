@@ -120,28 +120,45 @@ window.onload = () => {
                                 <div class="col-1" style="padding: 0px;"></div>
                                 <div class="col-5"
                                     style="border: 1px solid rgb(218, 218, 218);text-align: center;padding: 3px;border-radius: 4px;">
-                                    <a href="http://localhost:3000/detail/${data[i]._id}" style="width:100%;"><button class="btn" style="text-align: center; padding: 0px"><i
+                                    <a href="http://localhost:3000/detail/${data[i]._id}" style="width:100%;">
+                                    <button class="btn" style="text-align: center; padding: 0px"><i
                                     class="fas fa-info"></i></button></div></a>
                             </div>
                         </div>
                         <div class="col-1" style="padding: 0px;"></div>
-                        <div class="col-5"
+                        <div class="col-5 cart"
                             style="text-align: center;border: 1px solid rgba(235, 0, 0);text-align: center;padding: 3px; background-color: rgba(235, 0, 0);border-radius: 4px;">
-                            <button class="btn" id ="add-to-cart"
+                            <a>
+                            <button class="btn" id="add-to-cart"
                                 style="text-align: center; padding: 0px; color: white; font-weight: bold;">ADD
                                 TO CART</button>
+                                </a>
                         </div>
                         <div class="col-1" style="padding: 0px;width: 8.016px;"></div>
                     </div>
                 </div>
             </div>`;
 
-                console.log(data[i]._id)
+                // console.log(data[i]._id)
+
+
             }
+
             document.getElementById("collection").innerHTML = list;
-            document.getElementById('add-to-cart').addEventListener('click', (e) => {
-                console.log(1)
-            })
+            // document.getElementById("add-to-cart").addEventListener('click', (e) => {
+            //     $.ajax({
+            //         url: '/api/user',
+            //         type: 'GET',
+            //         success: (userdata) => {
+            //             for (let i = 0; i < userdata.length; i++) {
+            //                 if (userdata[i].email == localStorage.getItem('user')) {
+            //                     console.log(1)
+            //                 }
+            //             }
+            //         },
+            //         error: (error) => { console.log(error) }
+            //     })
+            // })
 
             document.getElementById("search-box-1").addEventListener('click', (e) => {
                 let searchItem = document.getElementById("search-box-input1").value;
@@ -170,8 +187,6 @@ window.onload = () => {
                     },
                     error: (error) => { console.log(error) }
                 })
-
-
             } else {
                 document.getElementById('login-register-button').innerHTML = `
                     <a href="http://localhost:3000/login"><button class="btn btn-default">Login</button></a>
@@ -185,3 +200,14 @@ window.onload = () => {
         },
     });
 };
+
+// $(document).ready(function() {
+//     debugger
+//             $(".cart button").each(function(index, item){
+//                 debugger
+//                 $(item).bind('click',(e)=>{
+//                     alert("1");
+//                 })
+//             })
+// })
+

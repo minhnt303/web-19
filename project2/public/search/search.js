@@ -156,6 +156,34 @@ window.onload = () => {
 
                 window.location.href = `/search/${searchItem}`;
             })
+
+            if (localStorage.getItem('user') != null) {
+                console.log('there is user')
+                $.ajax({
+                    url: '/api/user',
+                    type: 'GET',
+                    success: (userdata) => {
+                        for (let i = 0; i < userdata.length; i++) {
+                            if (userdata[i].email == localStorage.getItem('user')) {
+                                document.getElementById('login-register-button').innerHTML = `
+                                    <a style="margin-left:20px;">Hello! ${userdata[i].username}</a>
+                                    <button class="btn btn-default" id='logout-button'>Logout</button>`;
+                                document.getElementById('logout-button').addEventListener('click', (e) => {
+                                    window.location.href = `http://localhost:3000`;
+                                    localStorage.removeItem('user');
+                                })
+                                break;
+                            }
+                        }
+                    },
+                    error: (error) => { console.log(error) }
+                })
+            } else {
+                document.getElementById('login-register-button').innerHTML = `
+                    <a href="http://localhost:3000/login"><button class="btn btn-default">Login</button></a>
+                    <a href="http://localhost:3000/register"><button class="btn btn-default">Register</button></a>`
+                console.log('there is no user')
+            }
         },
         error: (error) => {
             console.log(error);
