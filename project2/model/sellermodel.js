@@ -11,7 +11,11 @@ const SellertSchema = new mongoose.Schema({
     password: {
         type: String,
         require: true,
-    }
+    },
+    createdAt: {
+        type: Date,
+        default: new Date(),
+    },
 });
 
 const sellerModel = mongoose.model('Seller', SellertSchema);

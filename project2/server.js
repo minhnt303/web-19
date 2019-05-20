@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+var http = require('http').Server(express);
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const mongoose = require('mongoose');
@@ -13,7 +14,7 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
     console.log('connect to mongodb success')
 
     const server = express();
-
+    // const io = require('socket.io')(http)
     server.use(express.static('public'));
     server.use(bodyParser.urlencoded({ extended: false }));
     server.use(bodyParser.json());
@@ -21,6 +22,12 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
     server.get("/", (req, res) => {
         res.status(200).sendFile(path.resolve(__dirname + "/public/product/product.html"));
     });
+
+    // io.on('connection', function(socket){
+    //     socket.on('chat message', function(msg){
+    //       io.emit('chat message', msg);
+    //     });
+    //   });
 
     server.get("/api/product", async (req, res) => {
         productModel.find({}, function (err, product) {
@@ -133,6 +140,15 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
             res.json(seller)
         })
     });
+
+    //Admin page
+    server.get("/adminLogin", async(req,res)=>{
+        res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminLogin/adminLogin.html"));
+    })
+
+    server.get("/admin", async(req,res)=>{
+        res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminMainPage/adminMainPage.html"));
+    })
 
     server.listen(3000, (err) => {
         if (err) throw err;

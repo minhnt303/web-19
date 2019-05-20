@@ -44,7 +44,11 @@ const ProductSchema = new mongoose.Schema({
         type: Number,
         default: 0,
         require: true,
-    }
+    },
+    createdAt: {
+        type: Date,
+        default: new Date(),
+    },
 
 });
 

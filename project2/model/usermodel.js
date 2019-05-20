@@ -15,7 +15,11 @@ const UsertSchema = new mongoose.Schema({
     cart:{
         type: Array,
         require:true,
-    }
+    },
+    createdAt: {
+        type: Date,
+        default: new Date(),
+    },
 });
 
 const userModel = mongoose.model('User', UsertSchema);
