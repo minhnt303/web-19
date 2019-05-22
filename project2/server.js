@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const productModel = require('./model/productmodel');
 const sellerModel = require('./model/sellermodel');
 const userModel = require('./model/usermodel');
+const orderModel = require('./model/ordermodel');
 mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
     if (err) {
         throw err;
@@ -74,6 +75,16 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
         })
     });
 
+    server.get("/api/order", async (req, res) => {
+        orderModel.find({}, function (err, order) {
+            if (err) {
+                res.send('something aSSADASD')
+                next();
+            }
+            res.json(order)
+        })
+    });
+
     server.get("/register", (req, res) => {
         res.status(200).sendFile(path.resolve(__dirname + "/public/register/register.html"));
     });
@@ -95,6 +106,10 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
         res.status(200).sendFile(path.resolve(__dirname + "/public/cart/cart.html"));
     });
 
+    server.get("/saveproduct", (req, res) => {
+        res.status(200).sendFile(path.resolve(__dirname + "/public/saveproduct/saveproduct.html"));
+    });
+
     server.get("/mainpage", (req, res) => {
         res.status(200).sendFile(path.resolve(__dirname + "/public/seller/mainpage/mainpage.html"));
     });
@@ -108,7 +123,7 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
             res.status(404).end('User not found');
         } else {
             await userModel.findByIdAndUpdate(userId, { $push: { cart: productId } }).exec();
-            res.status(200).end('Update success')
+            res.redirect('http://localhost:3000/cart')
         }
     })
 
@@ -121,7 +136,61 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
             res.status(404).end('User not found');
         } else {
             await userModel.findByIdAndUpdate(userId, { $pull: { cart: productId } }).exec();
-            res.status(200).end('Update success')
+            res.redirect('http://localhost:3000/cart')
+        }
+    })
+
+
+    server.get("/decreaeProductQuantity/:productId/:quantity", async (req, res) => {
+        const { productId, quantity } = req.params;
+        console.log(productId,quantity);
+        const existedUser = await productModel.findById(productId).exec();
+        if (!existedUser) {
+            console.log(1)
+            res.status(404).end('User not found');
+        } else {
+            await productModel.findByIdAndUpdate(productId, { $inc: { quantity: -quantity }}).exec();
+            res.redirect('http://localhost:3000/adminOrder')
+        }
+    })
+
+    server.get("/removeOrder/:orderId", async (req, res) => {
+        const { orderId } = req.params;
+        console.log(orderId);
+        const existedUser = await orderModel.findById(orderId).exec();
+        if (!existedUser) {
+            console.log(1)
+            res.status(404).end('User not found');
+        } else {
+            await orderModel.findById(orderId).remove().exec();;
+            res.redirect('http://localhost:3000/adminOrder')
+        }
+    })
+
+    server.get("/saveproduct/:userId/:productId", async (req, res) => {
+        const { userId, productId } = req.params;
+        console.log(userId,productId);
+        const existedUser = await userModel.findById(userId).exec();
+        if (!existedUser) {
+            console.log(1)
+            res.status(404).end('User not found');
+        } else {
+            await userModel.findByIdAndUpdate(userId, { $push: { saveproduct: productId } }).exec();
+            res.redirect('http://localhost:3000/saveproduct')
+        }
+    })
+
+    
+    server.get("/removesaveproduct/:userId/:productId", async (req, res) => {
+        const { userId, productId } = req.params;
+        console.log(userId,productId);
+        const existedUser = await userModel.findById(userId).exec();
+        if (!existedUser) {
+            console.log(1)
+            res.status(404).end('User not found');
+        } else {
+            await userModel.findByIdAndUpdate(userId, { $pull: { saveproduct: productId } }).exec();
+            res.redirect('http://localhost:3000/saveproduct')
         }
     })
 
@@ -141,10 +210,30 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
         })
     });
 
+    server.post("/order", async (req, res) => {
+        console.log(req.body);
+        var order = new orderModel(req.body);
+        order.save(function (err, user) {
+            res.json(order)
+        })
+    });
+
     //Admin page
     server.get("/adminLogin", async(req,res)=>{
         res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminLogin/adminLogin.html"));
     })
+
+    server.get("/adminOrder", async(req,res)=>{
+        res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminOrder/adminOrder.html"));
+    })
+
+    server.get("/adminOrderDetail/:orderid", (req, res) => {
+        res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminOrder/adminOrderDetail/adminOrderDetail.html"));
+    });
+
+    server.get("/adminSellerRegister", (req, res) => {
+        res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminOrder/adminSellerRegister/adminSellerRegister.html"));
+    });
 
     server.get("/admin", async(req,res)=>{
         res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminMainPage/adminMainPage.html"));

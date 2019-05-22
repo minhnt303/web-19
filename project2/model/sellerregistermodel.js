@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const UsertSchema = new mongoose.Schema({
-    username: {
+const SellertSchema = new mongoose.Schema({
+    seller: {
         type: String,
         require: true,
     },
@@ -12,19 +12,11 @@ const UsertSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    cart:{
-        type: Array,
-        require:true,
-    },
-    saveproduct:{
-        type: Array,
-        require:true,
-    },
     createdAt: {
         type: Date,
         default: new Date(),
     },
 });
 
-const userModel = mongoose.model('User', UsertSchema);
-module.exports = userModel;
+const sellerModel = mongoose.model('Seller', SellertSchema);
+module.exports = sellerModel;

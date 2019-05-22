@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+
+.main_page {
+    margin-top: 1%;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.header_1 {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.float_right {
+    float: right;
+}
+
+.float_left {
+    float: left;
+    color: rgba(235, 0, 0);
+}
+
+.mobile_number {
+    border-bottom: 1px solid rgba(235, 0, 0);
+}
+
+.header_2 {
+    width: 100%;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: rgb(54, 54, 54);
+}
+
+.active {
+    background-color: rgba(235, 0, 0);
+}
+
+.header_3 {
+    color:rgb(218, 218, 218);
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    border-top: 4px solid rgb(218, 218, 218);
+    border-bottom: 4px solid rgb(218, 218, 218);
+}
+
+.footer_1 {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background-color: rgb(218, 218, 218);
+}
+
+#enteremail {
+    text-align: center;
+    width: 30%;
+    margin-left: 35%;
+}
+
+.footer_2 {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #111;
+}
+
+.footer_col,
+.searchrow {
+    color: white;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.email,
+.map {
+    color: black;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+}
+
+.fa-envelope,
+.fa-map-marker-alt,
+.fa-facebook-square,
+.fa-facebook-square,
+.fa-instagram,
+.fa-twitter,
+.fa-youtube {
+    padding-top: 8px;
+}
+
+.facebook,
+.instagram,
+.twitter,
+.youtube {
+    color: white;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(235, 0, 0);
+}
+
+body {
+    background-image: url("https://cdn.ubi-tech.co.uk/wp-content/uploads/sites/2/2012/06/Ubi-Tech-Home-Banner-Large.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 700px;
+}
+
+.floating-menu {
+    font-family: sans-serif;
+    background: white;
+    width: 40px;
+    height: 160px;
+    z-index: 100;
+    position: fixed;
+    text-align: center
+}
+
+.floating-menu i {
+    text-align: center;
+    padding-top: 13px;
+    margin: 0px !important;
+    height: 40px;
+    font-size: 0.9em;
+    display: block;
+    margin: 0 0.5em;
+    color: black;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    border-right: 1px solid rgb(218, 218, 218);
+}
+.deal{
+    background-color: rgb(255, 81, 81);
+}

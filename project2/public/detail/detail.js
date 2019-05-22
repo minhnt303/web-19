@@ -57,7 +57,7 @@ window.onload = () => {
         <div class="row" style="height: 40px; background-color: whitesmoke; border-radius: 4px;">
             <div class="col-6"
                 style="text-align: right;padding-top: 10px;border-bottom:1px solid rgb(218, 218, 218)">
-                <button class="btn" style=" padding: 0px"><i class="fas fa-bookmark"></i> FAVORITE</button></div>
+                <button class="btn" style=" padding: 0px" id="saveproduct"><i class="fas fa-bookmark"></i> FAVORITE</button></div>
             <div class="col-6"
                 style="text-align: left;padding-top: 10px;border-bottom:1px solid rgb(218, 218, 218)">
                 <button class="btn" style=" padding: 0px" id="add">ADD TO CART <i class="fas fa-shopping-cart"></i></button>
@@ -108,6 +108,33 @@ window.onload = () => {
                 })
             })
 
+
+            document.getElementById('saveproduct').addEventListener('click', (e) => {
+                console.log(searchName)
+                $.ajax({
+                    url: '/api/user',
+                    type: 'GET',
+                    success: (userdata) => {
+                        for (let i = 0; i < userdata.length; i++) {
+                            if (userdata[i].email == localStorage.getItem('user')) {
+                                // document.getElementById('cart').innerHTML = `<h1>asdas</h1>`
+                                console.log(userdata[i]._id)
+                                $.ajax({
+                                    url: `/saveproduct/${userdata[i]._id}/${searchName}`,
+                                    type: 'GET',
+                                    success: (postuserdata) => {
+                                        console.log(postuserdata)
+                                        window.location.href = `/saveproduct`;
+                                    },
+                                    error: (error) => { console.log(error) }
+                                })
+                                break;
+                            }
+                        }
+                    },
+                    error: (error) => { console.log(error) }
+                })
+            })
 
             document.getElementById("search-box-1").addEventListener('click', (e) => {
                 let searchItem = document.getElementById("search-box-input1").value;
