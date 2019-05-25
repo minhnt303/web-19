@@ -8,6 +8,7 @@ const productModel = require('./model/productmodel');
 const sellerModel = require('./model/sellermodel');
 const userModel = require('./model/usermodel');
 const orderModel = require('./model/ordermodel');
+const sellerRegisterModel = require('./model/sellerregistermodel');
 mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
     if (err) {
         throw err;
@@ -31,13 +32,26 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
     //   });
 
     server.get("/api/product", async (req, res) => {
-        productModel.find({}, function (err, product) {
-            if (err) {
-                res.send('something aSSADASD')
-                next();
-            }
-            res.json(product)
-        })
+        // productModel.find({}, function (err, product) {
+        //     if (err) {
+        //         res.send('something aSSADASD')
+        //         next();
+        //     }
+        //     res.json(product)
+        // })
+
+        
+        try {
+            const { pageNumber, pageSize } = req.query;
+            const totalRecord = await productModel.find().countDocuments();
+            const data = await productModel.find({})
+                .skip(pageSize * (pageNumber - 1))
+                .limit(Number(pageSize))
+                .exec();
+            res.status(200).json(data)
+        } catch (err) {
+            res.status(500).end(err.message)
+        }
     });
 
     server.post("/api/product", async (req, res) => {
@@ -77,6 +91,16 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
 
     server.get("/api/order", async (req, res) => {
         orderModel.find({}, function (err, order) {
+            if (err) {
+                res.send('something aSSADASD')
+                next();
+            }
+            res.json(order)
+        })
+    });
+
+    server.get("/api/sellerregister", async (req, res) => {
+        sellerRegisterModel.find({}, function (err, order) {
             if (err) {
                 res.send('something aSSADASD')
                 next();
@@ -167,6 +191,19 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
         }
     })
 
+    server.get("/removeSellerRequest/:requestId", async (req, res) => {
+        const { requestId } = req.params;
+        console.log(requestId);
+        const existedUser = await sellerRegisterModel.findById(requestId).exec();
+        if (!existedUser) {
+            console.log(1)
+            res.status(404).end('User not found');
+        } else {
+            await sellerRegisterModel.findById(requestId).remove().exec();;
+            res.redirect('http://localhost:3000/adminSellerRegister')
+        }
+    })
+
     server.get("/saveproduct/:userId/:productId", async (req, res) => {
         const { userId, productId } = req.params;
         console.log(userId,productId);
@@ -210,6 +247,14 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
         })
     });
 
+    server.post("/sellerRegisterAdminPage", async (req, res) => {
+        console.log(req.body);
+        var seller = new sellerRegisterModel(req.body);
+        seller.save(function (err, seller) {
+            res.json(seller)
+        })
+    });
+
     server.post("/order", async (req, res) => {
         console.log(req.body);
         var order = new orderModel(req.body);
@@ -232,7 +277,7 @@ mongoose.connect('mongodb://localhost:27017/minhnt303', (err) => {
     });
 
     server.get("/adminSellerRegister", (req, res) => {
-        res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminOrder/adminSellerRegister/adminSellerRegister.html"));
+        res.status(200).sendFile(path.resolve(__dirname + "/public/admin/adminSellerRegister/adminSellerRegister.html"));
     });
 
     server.get("/admin", async(req,res)=>{

@@ -77,6 +77,14 @@ input {
     box-shadow: 2px 2px rgb(219, 239, 255);
 }
 
+textarea{
+    height: 60px;
+    border: none;
+    border-bottom: 2px solid rgb(164, 214, 255);
+    background-color: azure;
+    box-shadow: 2px 2px rgb(219, 239, 255);
+}
+
 label {
     margin: 0px;
 }

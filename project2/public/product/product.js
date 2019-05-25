@@ -1,3 +1,119 @@
+var pageProduct = [];
+function changeText(id) {
+    console.log(id.innerHTML)
+    $.ajax({
+        url: '/api/user',
+        type: 'GET',
+        success: (userdata) => {
+            for (let useridi = 0; useridi < userdata.length; useridi++) {
+                if (userdata[useridi].email == localStorage.getItem('user')) {
+                    $.ajax({
+                        url: `/api/product`,
+                        type: 'GET',
+                        success: (pdata) => {
+                            $.ajax({
+                                url: `/api/product?pageSize=12&pageNumber=${id.innerHTML}`,
+                                type: 'GET',
+                                success: (data) => {
+                                    console.log(data)
+                                    pageProduct = data;
+                                    var list = "";
+                                    for (var i = 0; i < data.length; i++) {
+                                        let pricediscount = data[i].price * (100 - data[i].discount) / 100;
+
+                                        list += `<div class="col-3"
+                style="background-color:white;height: 300px;border-right: 1px solid rgb(218, 218, 218);border-left: 1px solid rgb(245, 245, 245);border-top: 1px solid rgb(245, 245, 245);border-bottom: 1px solid rgb(218, 218, 218);color: black;font-family: 'Roboto', sans-serif;padding-bottom: 10px;padding-top: 10px;border-radius:4px;margin-top:10px;">
+                <div style="height: 65%;">
+                    <div id="collection-${i}">
+                        <img src="${data[i].image}" height="100%" width="100%">
+                    </div>
+                </div>
+                <div style="height: 25%;">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div id="collection-${i}-discount">
+                                        <h4 style="color: black;">$${pricediscount}</h4>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div id="collection-${i}-price">
+                                        <h5 style="color:rgb(218, 218, 218);">$${data[i].price}.00</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div id="collection-${i}-evaluate">
+                                <h5 style="float: right;color: black;">${data[i].evaluate} <i class="fas fa-star"></i></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collection-${i}-name">
+                        <h4 style="color: black;-o-text-overflow: ellipsis;  
+                        text-overflow:    ellipsis;   
+                        overflow:hidden;             
+                        white-space:nowrap;           
+                        width: 180px; ">${data[i].name}</h4>
+                    </div>
+                </div>
+                <div style="height: 10%;">
+                    <div class="row">
+                        <div class="col-1" style="padding: 0px;"></div>
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-5"
+                                    style="border: 1px solid rgb(218, 218, 218);text-align: center;padding: 3px;border-radius: 4px;">
+                                    <a href="http://localhost:3000/saveproduct/${userdata[useridi]._id}/${data[i]._id}" style="width:100%;">
+                                    <button class="btn" style="text-align: center; padding: 0px"><i
+                                            class="fas fa-bookmark"></i></button></div></a>
+                                <div class="col-1" style="padding: 0px;"></div>
+                                <div class="col-5"
+                                    style="border: 1px solid rgb(218, 218, 218);text-align: center;padding: 3px;border-radius: 4px;">
+                                    <a href="http://localhost:3000/detail/${data[i]._id}" style="width:100%;">
+                                    <button class="btn" style="text-align: center; padding: 0px"><i
+                                    class="fas fa-info"></i></button></div></a>
+                            </div>
+                        </div>
+                        <div class="col-1" style="padding: 0px;"></div>
+                        <div class="col-5 cart"
+                            style="text-align: center;border: 1px solid rgba(235, 0, 0);text-align: center;padding: 3px; background-color: rgba(235, 0, 0);border-radius: 4px;">
+                            <a href="/cart/${userdata[useridi]._id}/${data[i]._id}">
+                            <button class="btn" id="add-to-cart"
+                                style="text-align: center; padding: 0px; color: white; font-weight: bold;">ADD
+                                TO CART</button>
+                                </a>
+                        </div>
+                        <div class="col-1" style="padding: 0px;width: 8.016px;"></div>
+                    </div>
+                </div>
+            </div>`;
+                                    }
+                                    document.getElementById("collection").innerHTML = list;
+                                    pageLength = 0;
+                                    if (pdata.length % 12 == 0) {
+                                        pageLength = pdata.length / 12;
+                                    } else {
+                                        pageLength = pdata.length / 12 + 1;
+                                    }
+                                    for (var i = pageLength; i <= pageLength; i++) {
+                                        console.log(i);
+                                        if (i == id.innerHTML) {
+                                            document.getElementById(`${id.innerHTML}`).innerHTML = `<a onclick="changeText(this) id="${id.innerHTML}" class="active" style="padding:0px">${id.innerHTML}</a>`;
+                                        } else {
+                                            document.getElementById(`${i}`).innerHTML = `<a onclick="changeText(this) id="${i}"style="padding:0px">${i}</a>`;
+                                        }
+                                    }
+                                }
+                            })
+                        }
+                    })
+                }
+            }
+        }
+    })
+}
 window.onload = () => {
     $.ajax({
         url: '/api/user',
@@ -5,12 +121,28 @@ window.onload = () => {
         success: (userdata) => {
             for (let useridi = 0; useridi < userdata.length; useridi++) {
                 if (userdata[useridi].email == localStorage.getItem('user')) {
-                    console.log(userdata[useridi]._id)
                     $.ajax({
                         url: `/api/product`,
                         type: 'GET',
                         success: (data) => {
-                            // console.log(data)
+                            console.log(data)
+                            pageLength = 0;
+                            if (data.length % 12 == 0) {
+                                pageLength = data.length / 12;
+                            } else {
+                                pageLength = data.length / 12 + 1;
+                            }
+                            console.log(pageLength)
+                            var page = '';
+                            for (var i = pageLength; i <= pageLength; i++) {
+                                console.log(i);
+                                if (i == 1) {
+                                    page = `<a onclick="changeText(this)" id="${i}" class="active">${i}</a>`
+                                } else {
+                                    page += `<a onclick="changeText(this)" id="${i}">${i}</a>`
+                                }
+                            }
+                            document.getElementById("pagination").innerHTML = '<a href="#">&laquo;</a>' + page + '<a href="#">&raquo;</a>';
                             let pricediscount1 = data[0].price * (100 - data[0].discount) / 100;
                             let pricediscount2 = data[1].price * (100 - data[1].discount) / 100;
                             let pricediscount3 = data[2].price * (100 - data[2].discount) / 100;

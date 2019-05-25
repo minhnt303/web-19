@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="/admin/adminSellerRegister/adminSellerRegister.css"> -->
+</head>
+
+<body>
+
+    <div class="row" style="width: 100%;padding-left: 15px">
+        <div class="col-2"
+            style='border-right: 1px solid #333; height: 690px;position: sticky; top:0;background-color: #333;color: white;'>
+            <div class="logo">
+                <h1
+                    style=" font-weight:bold;  background-color: red; border-radius: 4px;text-align: center;margin-top:50px">
+                    TECH</h1>
+            </div>
+            <div class="dashBoard" style="border-bottom: 1px solid white;margin-top:50px; padding-bottom: 20px;">
+                <a href="http://localhost:3000/admin" style="color: white"><span class="glyphicon glyphicon-dashboard"
+                        style="font-size: 30px">&thinsp;Dashboard</span></a>
+            </div>
+            <div class="mail" style="border-bottom: 1px solid white;margin-top:20px;padding-bottom: 20px;">
+                <a href="http://localhost:3000/adminSellerRegister" style="color: white"><span
+                        class="glyphicon glyphicon-envelope" style="font-size: 30px">&thinsp;Email</span></a>
+            </div>
+            <div class="order" style="border-bottom: 1px solid white;margin-top:20px;padding-bottom: 20px;">
+                <a href="http://localhost:3000/adminOrder" style="color: white"><span
+                        class="glyphicon glyphicon-shopping-cart" style="font-size: 30px">&thinsp;Order</span></a>
+            </div>
+        </div>
+        <div class="col-10" style='height: 1000px; background-color: #eee'>
+            <div class="navBar"
+                style="background-color: white; margin-top: 30px; height: 50px; border-radius: 4px; box-shadow: 1px 1px #888888;">
+                <h2 style="padding-left:20px; padding-top:8px; font-weight: bold;">Seller Register</h2>
+            </div>
+
+            <div class="spacer" data-height="100" style="height: 10px;"></div>
+
+            <div class="item"
+                style="background-color: white; margin-top: 30px; height: 100%; border-radius: 4px; box-shadow: 1px 1px #888888;width: 100%;padding-left:15px;">
+                <div id="itemOrder" class="row" style="width: 100%">
+                    <div class="col-1"
+                        style="border-top: 1px solid #333;border-left: 1px solid #333;border-bottom: 1px solid #333;">
+                        STT</div>
+                    <div class="col-2"
+                        style="border-top: 1px solid #333;border-left: 1px solid #333;border-bottom: 1px solid #333;">
+                        TIME</div>
+                    <div class="col-2"
+                        style="border-top: 1px solid #333;border-left: 1px solid #333;border-bottom: 1px solid #333;">
+                        EMAIL</div>
+                    <div class="col-2"
+                        style="border-top: 1px solid #333;border-left: 1px solid #333;border-bottom: 1px solid #333;">
+                        NAME</div>
+                    <div class="col-2"
+                        style="border-top: 1px solid #333;border-left: 1px solid #333;border-bottom: 1px solid #333;">
+                        INFO</div>
+                    <div class="col-2"
+                        style="border-top: 1px solid #333;border-left: 1px solid #333;border-bottom: 1px solid #333;">
+                        PASSWORD</div>
+                    <div class="col-1" style="border: 1px solid #333;">CONFIRM</div>
+                </div>
+                <div id="itemDetail" class="row" style="width: 100%">
+                    <!-- <div class="col-1" style="border-left: 1px solid #333;border-bottom: 1px solid #333;">STT</div>
+                    <div class="col-2" style="border-left: 1px solid #333;border-bottom: 1px solid #333;">TIME</div>
+                    <div class="col-3" style="border-left: 1px solid #333;border-bottom: 1px solid #333;">ID CUTOMER</div>
+                    <div class="col-3" style="border-left: 1px solid #333;border-bottom: 1px solid #333;">PRODUCT QUANLITY</div>
+                    <div class="col-3" style="border-left: 1px solid #333;border-bottom: 1px solid #333;border-right: 1px solid #333;">MONEY</div> -->
+                </div>
+
+                <div id="summoney" class="row" style="width: 100%">
+                    <!-- <div class="col-10"
+                        style="border-left: 1px solid #333;border-bottom: 1px solid #333;text-align: center;">
+                        SUM MONEY</div>
+                    <div class="col-2" style="border-left: 1px solid #333;border-bottom: 1px solid #333;border-right: 1px solid #333;">MONEY</div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/pie.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="/admin/adminSellerRegister/adminSellerRegister.js"></script>
+</body>
+
+</html>

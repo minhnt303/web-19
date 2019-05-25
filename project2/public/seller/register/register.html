@@ -57,26 +57,26 @@
             </div>
             <div class="col-6 right-col">
                 <div class="register">
-                    <label>SELLERNAME</label><br>
-                    <input class="form-group" id="sellername" type="text" style="margin-top:8px"
-                        placeholder="Please enter your name" required></input><br>
-                    <label>EMAIL</label><br>
-                    <input class="form-group" id="email" type="email" style="margin-top:8px"
-                        placeholder="Please enter your email" required></input><br>
-                    <label>PASSWORD</label><br>
-                    <input class="form-group" id="password" type="password" style="margin-top:8px"
-                        placeholder="Please enter your password" required></input><br>
-                    <label>REPEAT PASSWORD</label><br>
-                    <input class="form-group" id="re-password" type="password" style="margin-top:8px"
-                        placeholder="Please enter your re-password" required></input><br>
-                    <div id="alert">
-                        <!-- <strong>Danger!</strong> Indicates a dangerous or potentially negative action. -->
-                    </div>
-                    <div class="register-login-area">
-                        <button class="btn btn-default" id="register-button">Register</button><br>
-                        <a href="http://localhost:3000/login">I am already a member</a><br>
-                        <a href="http://localhost:3000/sellerlogin">I am already a seller! Login now!</a>
-                    </div>
+                    <form method="POST" action="https://formspree.io/minhnt303@gmail.com">
+                        <label>SELLERNAME</label><br>
+                        <input class="form-group" id="sellername" type="text" name="sellername" style="margin-top:8px"
+                            placeholder="Please enter your name" required></input><br>
+                        <label>EMAIL</label><br>
+                        <input class="form-group" id="email" type="email" name="email" style="margin-top:8px"
+                            placeholder="Please enter your email" required></input><br>
+                        <label>YOUR INFO</label><br>
+                        <textarea class="form-group"id="info" type="text" name="info" style="margin-top:8px"
+                            placeholder="Please enter your infomation" required></textarea><br>
+                        <div id="alert">
+                            <!-- <strong>Danger!</strong> Indicates a dangerous or potentially negative action. -->
+                        </div>
+                        <div class="register-login-area">
+                            <!-- <button class="btn btn-default" id="register-button">Register</button> -->
+                            <button class="btn btn-default" id="register-button" type="submit">Register</button><br>
+                            <a href="http://localhost:3000/login">I am already a member</a><br>
+                            <a href="http://localhost:3000/sellerlogin">I am already a seller! Login now!</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

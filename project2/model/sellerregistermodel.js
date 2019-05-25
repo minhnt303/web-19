@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const SellertSchema = new mongoose.Schema({
+const SellerRegisterSchema = new mongoose.Schema({
     seller: {
         type: String,
         require: true,
@@ -8,7 +8,7 @@ const SellertSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    password: {
+    info:{
         type: String,
         require: true,
     },
@@ -18,5 +18,5 @@ const SellertSchema = new mongoose.Schema({
     },
 });
 
-const sellerModel = mongoose.model('Seller', SellertSchema);
-module.exports = sellerModel;
+const sellerRegisterModel = mongoose.model('SellerRegister', SellerRegisterSchema);
+module.exports = sellerRegisterModel;
